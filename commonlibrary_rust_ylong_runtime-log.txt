@@ -1,0 +1,4173 @@
+    Updating git repository `https://github.com/trusted-programming/cargo-mate`
+Building workspace metadata entry `cargo-mate`
+    Finished release [optimized] target(s) in 0.08s
+Fixing with toolchain `nightly-2023-10-06-x86_64-unknown-linux-gnu`
+   Compiling ylong_runtime_macros v1.0.0 (/home/c00834010/dev/commonlibrary_rust_ylong_runtime/ylong_runtime_macros)
+    Checking ylong_runtime v1.0.0 (/home/c00834010/dev/commonlibrary_rust_ylong_runtime/ylong_runtime)
+    Checking ylong_io v1.0.0 (/home/c00834010/dev/commonlibrary_rust_ylong_runtime/ylong_io)
+    Checking ylong_ffrt v1.0.0 (/home/c00834010/dev/commonlibrary_rust_ylong_runtime/ylong_ffrt)
+warning: failed to automatically apply fixes suggested by rustc to crate `ylong_runtime_macros`
+
+after fixes were automatically applied the compiler reported errors within these files:
+
+  * ylong_runtime_macros/src/lib.rs
+
+This likely indicates a bug in either rustc or cargo itself,
+and we would appreciate a bug report! You're likely to see 
+a number of compiler warnings after this message which cargo
+attempted to fix but failed. If you could open an issue at
+https://github.com/rust-lang/rust/issues
+quoting the full output of this command we'd be very appreciative!
+Note that you may be able to make some more progress in the near-term
+fixing code with the `--broken-code` flag
+
+The following errors were reported:
+error[E0689]: can't call method `for_each` on type `usize`
+  --> ylong_runtime_macros/src/lib.rs:44:25
+   |
+44 |     0..tuple_parser.len.for_each(|i| {
+   |                         ^^^^^^^^ can't call method `for_each` on type `usize`
+   |
+help: you must surround the range in parentheses to call its `for_each` function
+   |
+44 |     (0..tuple_parser.len).for_each(|i| {
+   |     +                   +
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0689`.
+Original diagnostics will follow.
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime_macros/src/lib.rs:44:5
+   |
+44 | /     for i in 0..tuple_parser.len {
+45 | |         if i == tuple_parser.except_index {
+46 | |             // Set 'except_index' at index
+47 | |             group_inner.extend(tuple_parser.except.clone());
+...  |
+56 | |         }
+57 | |     }
+   | |_____^
+   |
+   = note: `#[warn(lint::warn_foreach)]` on by default
+help: try using `for_each` on the iterator
+   |
+44 ~     0..tuple_parser.len.for_each(|i| {
+45 +         if i == tuple_parser.except_index {
+46 +             // Set 'except_index' at index
+47 +             group_inner.extend(tuple_parser.except.clone());
+48 +         } else {
+49 +             // Set 'default'
+50 +             group_inner.extend(tuple_parser.default.clone());
+51 +         }
+52 +         // Add ',' separator
+53 +         if i != tuple_parser.len - 1 {
+54 +             let punct: Punct = Punct::new(',', Spacing::Alone);
+55 +             group_inner.extend(TokenStream::from(TokenTree::from(punct)));
+56 +         }
+57 +     });
+   |
+
+warning: `ylong_runtime_macros` (lib test) generated 1 warning (1 duplicate)
+warning: failed to automatically apply fixes suggested by rustc to crate `ylong_runtime_macros`
+
+after fixes were automatically applied the compiler reported errors within these files:
+
+  * ylong_runtime_macros/src/lib.rs
+
+This likely indicates a bug in either rustc or cargo itself,
+and we would appreciate a bug report! You're likely to see 
+a number of compiler warnings after this message which cargo
+attempted to fix but failed. If you could open an issue at
+https://github.com/rust-lang/rust/issues
+quoting the full output of this command we'd be very appreciative!
+Note that you may be able to make some more progress in the near-term
+fixing code with the `--broken-code` flag
+
+The following errors were reported:
+error[E0689]: can't call method `for_each` on type `usize`
+  --> ylong_runtime_macros/src/lib.rs:44:25
+   |
+44 |     0..tuple_parser.len.for_each(|i| {
+   |                         ^^^^^^^^ can't call method `for_each` on type `usize`
+   |
+help: you must surround the range in parentheses to call its `for_each` function
+   |
+44 |     (0..tuple_parser.len).for_each(|i| {
+   |     +                   +
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0689`.
+Original diagnostics will follow.
+
+warning: `ylong_runtime_macros` (lib) generated 1 warning (1 duplicate)
+warning: `ylong_runtime_macros` (lib) generated 1 warning (run `cargo fix --lib -p ylong_runtime_macros` to apply 1 suggestion)
+warning: failed to automatically apply fixes suggested by rustc to crate `ylong_runtime`
+
+after fixes were automatically applied the compiler reported errors within these files:
+
+  * /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/collections/linked_list.rs
+  * /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/collections/vec_deque/mod.rs
+  * /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs
+  * /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/std/src/collections/hash/set.rs
+  * ylong_runtime/src/executor/async_pool.rs
+  * ylong_runtime/src/executor/blocking_pool.rs
+  * ylong_runtime/src/executor/parker.rs
+  * ylong_runtime/src/executor/queue.rs
+  * ylong_runtime/src/io/buffered/async_buf_writer.rs
+  * ylong_runtime/src/task/join_set.rs
+
+This likely indicates a bug in either rustc or cargo itself,
+and we would appreciate a bug report! You're likely to see 
+a number of compiler warnings after this message which cargo
+attempted to fix but failed. If you could open an issue at
+https://github.com/rust-lang/rust/issues
+quoting the full output of this command we'd be very appreciative!
+Note that you may be able to make some more progress in the near-term
+fixing code with the `--broken-code` flag
+
+The following errors were reported:
+error[E0728]: `await` is only allowed inside `async` functions and blocks
+   --> ylong_runtime/src/task/join_set.rs:219:36
+    |
+218 |         0..count.for_each(|_| {
+    |                           --- this is not `async`
+219 |             match self.join_next().await {
+    |                                    ^^^^^ only allowed inside `async` functions and blocks
+
+error[E0267]: `break` inside of a closure
+   --> ylong_runtime/src/executor/blocking_pool.rs:302:33
+    |
+299 |                         shared.worker_threads.iter().enumerate().for_each(|(thread_id, thread)| {
+    |                                                                           --------------------- enclosing closure
+...
+302 |                                 break;
+    |                                 ^^^^^ cannot `break` inside of a closure
+
+error[E0267]: `continue` inside of a closure
+   --> ylong_runtime/src/executor/async_pool.rs:249:17
+    |
+245 |         0..num.for_each(|i| {
+    |                         --- enclosing closure
+...
+249 |                 continue;
+    |                 ^^^^^^^^ cannot `continue` inside of a closure
+
+error[E0267]: `break` inside of a closure
+   --> ylong_runtime/src/executor/queue.rs:480:17
+    |
+470 |         1..num.for_each(|_| {
+    |                         --- enclosing closure
+...
+480 |                 break;
+    |                 ^^^^^ cannot `break` inside of a closure
+
+error[E0267]: `break` inside of a closure
+   --> ylong_runtime/src/io/buffered/async_buf_writer.rs:268:21
+    |
+266 |             bufs.for_each(|buf| {
+    |                           ----- enclosing closure
+267 |                 if buf.len() + this.buf.len() >= this.buf.capacity() {
+268 |                     break;
+    |                     ^^^^^ cannot `break` inside of a closure
+
+error[E0689]: can't call method `for_each` on type `usize`
+   --> ylong_runtime/src/task/join_set.rs:218:18
+    |
+218 |         0..count.for_each(|_| {
+    |                  ^^^^^^^^ can't call method `for_each` on type `usize`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+218 |         (0..count).for_each(|_| {
+    |         +        +
+
+error[E0308]: mismatched types
+   --> ylong_runtime/src/task/join_set.rs:221:32
+    |
+221 |                 Some(Ok(_)) => {}
+    |                                ^^ expected `Result<(), ScheduleError>`, found `()`
+    |
+    = note:   expected enum `std::result::Result<(), error::ScheduleError>`
+            found unit type `()`
+note: return type inferred to be `std::result::Result<(), error::ScheduleError>` here
+   --> ylong_runtime/src/task/join_set.rs:220:32
+    |
+220 |                 None => return Ok(()),
+    |                                ^^^^^^
+help: try adding an expression at the end of the block
+    |
+223 ~             }
+224 +             Ok(())
+    |
+
+error[E0599]: `std::collections::VecDeque<(usize, std::thread::JoinHandle<()>)>` is not an iterator
+  --> ylong_runtime/src/executor/blocking_pool.rs:94:21
+   |
+94 |               workers.for_each(|handle| {
+   |               --------^^^^^^^^ `std::collections::VecDeque<(usize, std::thread::JoinHandle<()>)>` is not an iterator
+  --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/collections/vec_deque/mod.rs:94:1
+  ::: /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/collections/vec_deque/mod.rs:97:1
+   |
+   = note: doesn't satisfy `_: Iterator`
+   |
+   = note: the following trait bounds were not satisfied:
+           `std::collections::VecDeque<(usize, std::thread::JoinHandle<()>)>: std::iter::Iterator`
+           which is required by `&mut std::collections::VecDeque<(usize, std::thread::JoinHandle<()>)>: std::iter::Iterator`
+
+error[E0689]: can't call method `for_each` on type `u8`
+   --> ylong_runtime/src/executor/blocking_pool.rs:171:48
+    |
+171 |         0..self.inner.max_permanent_thread_num.for_each(|_| {
+    |                                                ^^^^^^^^ can't call method `for_each` on type `u8`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+171 |         (0..self.inner.max_permanent_thread_num).for_each(|_| {
+    |         +                                      +
+
+error[E0308]: mismatched types
+   --> ylong_runtime/src/executor/blocking_pool.rs:182:36
+    |
+182 |                   Ok(join_handle) => {
+    |  ____________________________________^
+183 | |                     shared.worker_threads.push_back((worker_id, join_handle));
+184 | |                     shared.worker_id += 1;
+185 | |                 }
+    | |_________________^ expected `Result<_, ScheduleError>`, found `()`
+    |
+    = note:   expected enum `std::result::Result<_, error::ScheduleError>`
+            found unit type `()`
+note: return type inferred to be `std::result::Result<_, error::ScheduleError>` here
+   --> ylong_runtime/src/executor/blocking_pool.rs:187:28
+    |
+187 |                     return Err(ScheduleError::new(ErrorKind::BlockSpawnErr, err));
+    |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: try adding an expression at the end of the block
+    |
+189 ~             }
+190 +             Ok(())
+    |
+
+error[E0689]: can't call method `for_each` on type `{integer}`
+  --> ylong_runtime/src/executor/parker.rs:76:14
+   |
+76 |         0..3.for_each(|_| {
+   |              ^^^^^^^^ can't call method `for_each` on type `{integer}`
+   |
+help: you must surround the range in parentheses to call its `for_each` function
+   |
+76 |         (0..3).for_each(|_| {
+   |         +    +
+
+error[E0689]: can't call method `for_each` on type `usize`
+  --> ylong_runtime/src/executor/async_pool.rs:68:23
+   |
+68 |         0..thread_num.for_each(|_| {
+   |                       ^^^^^^^^ can't call method `for_each` on type `usize`
+   |
+help: you must surround the range in parentheses to call its `for_each` function
+   |
+68 |         (0..thread_num).for_each(|_| {
+   |         +             +
+
+error[E0689]: can't call method `for_each` on type `usize`
+   --> ylong_runtime/src/executor/async_pool.rs:138:29
+    |
+138 |         0..self.num_workers.for_each(|index| {
+    |                             ^^^^^^^^ can't call method `for_each` on type `usize`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+138 |         (0..self.num_workers).for_each(|index| {
+    |         +                   +
+
+error[E0282]: type annotations needed for `&_`
+   --> ylong_runtime/src/executor/async_pool.rs:139:17
+    |
+139 |             let item = self.locals.get(index).unwrap();
+    |                 ^^^^
+140 |             if !item.is_empty() {
+    |                      -------- type must be known at this point
+    |
+help: consider giving `item` an explicit type, where the placeholders `_` are specified
+    |
+139 |             let item: &_ = self.locals.get(index).unwrap();
+    |                     ++++
+
+error[E0689]: can't call method `for_each` on type `usize`
+   --> ylong_runtime/src/executor/async_pool.rs:245:16
+    |
+245 |         0..num.for_each(|i| {
+    |                ^^^^^^^^ can't call method `for_each` on type `usize`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+245 |         (0..num).for_each(|i| {
+    |         +      +
+
+error[E0282]: type annotations needed for `&_`
+   --> ylong_runtime/src/executor/async_pool.rs:251:17
+    |
+251 |             let target = self.locals.get(i).unwrap();
+    |                 ^^^^^^
+252 |             if let Some(task) = target.steal_into(local_run_queue) {
+    |                                        ---------- type must be known at this point
+    |
+help: consider giving `target` an explicit type, where the placeholders `_` are specified
+    |
+251 |             let target: &_ = self.locals.get(i).unwrap();
+    |                       ++++
+
+error[E0308]: mismatched types
+   --> ylong_runtime/src/executor/async_pool.rs:252:13
+    |
+252 | /             if let Some(task) = target.steal_into(local_run_queue) {
+253 | |                 #[cfg(feature = "metrics")]
+254 | |                 self.steal_times
+255 | |                     .fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+...   |
+260 | |                 return Some(task);
+261 | |             }
+    | |_____________^ expected `Option<_>`, found `()`
+    |
+    = note:   expected enum `std::option::Option<_>`
+            found unit type `()`
+note: return type inferred to be `std::option::Option<_>` here
+   --> ylong_runtime/src/executor/async_pool.rs:260:24
+    |
+260 |                 return Some(task);
+    |                        ^^^^^^^^^^
+help: try adding an expression at the end of the block
+    |
+261 ~             }
+262 +             None
+    |
+261 ~             }
+262 +             Some(())
+    |
+
+error[E0689]: can't call method `for_each` on type `usize`
+   --> ylong_runtime/src/executor/async_pool.rs:371:29
+    |
+371 |         0..self.inner.total.for_each(|index| {
+    |                             ^^^^^^^^ can't call method `for_each` on type `usize`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+371 |         (0..self.inner.total).for_each(|index| {
+    |         +                   +
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `std::ops::FromResidual`)
+   --> ylong_runtime/src/executor/async_pool.rs:412:19
+    |
+384 |         workers.drain(..).enumerate().for_each(|(worker_id, worker)| {
+    |                                                --------------------- this function should return `Result` or `Option` to accept `?`
+...
+412 |                 })?;
+    |                   ^ cannot use the `?` operator in a closure that returns `()`
+    |
+    = help: the trait `std::ops::FromResidual<std::result::Result<std::convert::Infallible, std::io::Error>>` is not implemented for `()`
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `std::ops::FromResidual`)
+   --> ylong_runtime/src/executor/async_pool.rs:416:19
+    |
+384 |         workers.drain(..).enumerate().for_each(|(worker_id, worker)| {
+    |                                                --------------------- this function should return `Result` or `Option` to accept `?`
+...
+416 |                 })?;
+    |                   ^ cannot use the `?` operator in a closure that returns `()`
+    |
+    = help: the trait `std::ops::FromResidual<std::result::Result<std::convert::Infallible, std::io::Error>>` is not implemented for `()`
+
+error[E0689]: can't call method `for_each` on type `u16`
+   --> ylong_runtime/src/executor/queue.rs:172:16
+    |
+172 |         0..cap.for_each(|_| {
+    |                ^^^^^^^^ can't call method `for_each` on type `u16`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+172 |         (0..cap).for_each(|_| {
+    |         +      +
+
+error[E0689]: can't call method `for_each` on type `usize`
+   --> ylong_runtime/src/executor/queue.rs:310:18
+    |
+310 |         0..count.for_each(|_| {
+    |                  ^^^^^^^^ can't call method `for_each` on type `usize`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+310 |         (0..count).for_each(|_| {
+    |         +        +
+
+error[E0689]: can't call method `for_each` on type `u16`
+   --> ylong_runtime/src/executor/queue.rs:381:18
+    |
+381 |         0..count.for_each(|_| {
+    |                  ^^^^^^^^ can't call method `for_each` on type `u16`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+381 |         (0..count).for_each(|_| {
+    |         +        +
+
+error[E0599]: `std::vec::Vec<std::cell::UnsafeCell<std::mem::MaybeUninit<task::Task>>>` is not an iterator
+   --> ylong_runtime/src/executor/queue.rs:441:15
+    |
+441 |         tasks.for_each(|task_ptr| {
+    |         ------^^^^^^^^ `std::vec::Vec<std::cell::UnsafeCell<std::mem::MaybeUninit<task::Task>>>` is not an iterator; try calling `.into_iter()` or `.iter()`
+   --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs:396:1
+    |
+    = note: doesn't satisfy `_: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `std::vec::Vec<std::cell::UnsafeCell<std::mem::MaybeUninit<task::Task>>>: std::iter::Iterator`
+            which is required by `&mut std::vec::Vec<std::cell::UnsafeCell<std::mem::MaybeUninit<task::Task>>>: std::iter::Iterator`
+            `[std::cell::UnsafeCell<std::mem::MaybeUninit<task::Task>>]: std::iter::Iterator`
+            which is required by `&mut [std::cell::UnsafeCell<std::mem::MaybeUninit<task::Task>>]: std::iter::Iterator`
+
+error[E0689]: can't call method `for_each` on type `usize`
+   --> ylong_runtime/src/executor/queue.rs:470:16
+    |
+470 |         1..num.for_each(|_| {
+    |                ^^^^^^^^ can't call method `for_each` on type `usize`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+470 |         (1..num).for_each(|_| {
+    |         +      +
+
+error[E0599]: `&[std::io::IoSlice<'_>]` is not an iterator
+   --> ylong_runtime/src/io/buffered/async_buf_writer.rs:231:18
+    |
+231 |             bufs.for_each(|buf| {
+    |             -----^^^^^^^^ `&[std::io::IoSlice<'_>]` is not an iterator; try calling `.iter()`
+    |
+    = note: the following trait bounds were not satisfied:
+            `&[std::io::IoSlice<'_>]: std::iter::Iterator`
+            which is required by `&mut &[std::io::IoSlice<'_>]: std::iter::Iterator`
+            `[std::io::IoSlice<'_>]: std::iter::Iterator`
+            which is required by `&mut [std::io::IoSlice<'_>]: std::iter::Iterator`
+
+error[E0599]: `&[std::io::IoSlice<'_>]` is not an iterator
+   --> ylong_runtime/src/io/buffered/async_buf_writer.rs:242:22
+    |
+242 |                 bufs.for_each(|buf| {
+    |                 -----^^^^^^^^ `&[std::io::IoSlice<'_>]` is not an iterator; try calling `.iter()`
+    |
+    = note: the following trait bounds were not satisfied:
+            `&[std::io::IoSlice<'_>]: std::iter::Iterator`
+            which is required by `&mut &[std::io::IoSlice<'_>]: std::iter::Iterator`
+            `[std::io::IoSlice<'_>]: std::iter::Iterator`
+            which is required by `&mut [std::io::IoSlice<'_>]: std::iter::Iterator`
+
+error[E0599]: `&[std::io::IoSlice<'_>]` is not an iterator
+   --> ylong_runtime/src/io/buffered/async_buf_writer.rs:266:18
+    |
+266 |             bufs.for_each(|buf| {
+    |             -----^^^^^^^^ `&[std::io::IoSlice<'_>]` is not an iterator; try calling `.iter()`
+    |
+    = note: the following trait bounds were not satisfied:
+            `&[std::io::IoSlice<'_>]: std::iter::Iterator`
+            which is required by `&mut &[std::io::IoSlice<'_>]: std::iter::Iterator`
+            `[std::io::IoSlice<'_>]: std::iter::Iterator`
+            which is required by `&mut [std::io::IoSlice<'_>]: std::iter::Iterator`
+
+error[E0599]: `std::collections::LinkedList<std::sync::Arc<task::join_set::JoinEntry<R>>>` is not an iterator
+   --> ylong_runtime/src/task/join_set.rs:244:25
+    |
+244 |           &list.done_list.for_each(|item| {
+    |            ---------------^^^^^^^^ `std::collections::LinkedList<std::sync::Arc<task::join_set::JoinEntry<R>>>` is not an iterator
+   --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/collections/linked_list.rs:51:1
+   ::: /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/collections/linked_list.rs:54:1
+    |
+    = note: doesn't satisfy `_: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `std::collections::LinkedList<std::sync::Arc<task::join_set::JoinEntry<R>>>: std::iter::Iterator`
+            which is required by `&mut std::collections::LinkedList<std::sync::Arc<task::join_set::JoinEntry<R>>>: std::iter::Iterator`
+
+error[E0599]: `std::collections::HashSet<std::sync::Arc<task::join_set::JoinEntry<R>>>` is not an iterator
+   --> ylong_runtime/src/task/join_set.rs:247:25
+    |
+247 |         &list.wait_list.for_each(|item| {
+    |          ---------------^^^^^^^^ `std::collections::HashSet<std::sync::Arc<task::join_set::JoinEntry<R>>>` is not an iterator
+   --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/std/src/collections/hash/set.rs:107:1
+    |
+    = note: doesn't satisfy `_: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `std::collections::HashSet<std::sync::Arc<task::join_set::JoinEntry<R>>>: std::iter::Iterator`
+            which is required by `&mut std::collections::HashSet<std::sync::Arc<task::join_set::JoinEntry<R>>>: std::iter::Iterator`
+
+error[E0599]: `std::collections::LinkedList<std::sync::Arc<task::join_set::JoinEntry<R>>>` is not an iterator
+   --> ylong_runtime/src/task/join_set.rs:427:25
+    |
+427 |           &list.done_list.for_each(|item| {
+    |            ---------------^^^^^^^^ `std::collections::LinkedList<std::sync::Arc<task::join_set::JoinEntry<R>>>` is not an iterator
+   --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/collections/linked_list.rs:51:1
+   ::: /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/collections/linked_list.rs:54:1
+    |
+    = note: doesn't satisfy `_: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `std::collections::LinkedList<std::sync::Arc<task::join_set::JoinEntry<R>>>: std::iter::Iterator`
+            which is required by `&mut std::collections::LinkedList<std::sync::Arc<task::join_set::JoinEntry<R>>>: std::iter::Iterator`
+
+error[E0599]: `std::collections::HashSet<std::sync::Arc<task::join_set::JoinEntry<R>>>` is not an iterator
+   --> ylong_runtime/src/task/join_set.rs:433:25
+    |
+433 |         &list.wait_list.for_each(|item| {
+    |          ---------------^^^^^^^^ `std::collections::HashSet<std::sync::Arc<task::join_set::JoinEntry<R>>>` is not an iterator
+   --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/std/src/collections/hash/set.rs:107:1
+    |
+    = note: doesn't satisfy `_: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `std::collections::HashSet<std::sync::Arc<task::join_set::JoinEntry<R>>>: std::iter::Iterator`
+            which is required by `&mut std::collections::HashSet<std::sync::Arc<task::join_set::JoinEntry<R>>>: std::iter::Iterator`
+
+error: aborting due to 32 previous errors
+
+Some errors have detailed explanations: E0267, E0277, E0282, E0308, E0599, E0689, E0728.
+For more information about an error, try `rustc --explain E0267`.
+Original diagnostics will follow.
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/src/executor/blocking_pool.rs:94:13
+   |
+94 | /             for handle in workers {
+95 | |                 let _ = handle.1.join();
+96 | |             }
+   | |_____________^
+   |
+   = note: `#[warn(lint::warn_foreach)]` on by default
+help: try using `for_each` on the iterator
+   |
+94 ~             workers.for_each(|handle| {
+95 +                 let _ = handle.1.join();
+96 +             });
+   |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/executor/blocking_pool.rs:171:9
+    |
+171 | /         for _ in 0..self.inner.max_permanent_thread_num {
+172 | |             let mut shared = self.inner.shared.lock().unwrap();
+173 | |             shared.total_thread_num += 1;
+174 | |             let worker_id = shared.worker_id;
+...   |
+189 | |             }
+190 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+171 ~         0..self.inner.max_permanent_thread_num.for_each(|_| {
+172 +             let mut shared = self.inner.shared.lock().unwrap();
+173 +             shared.total_thread_num += 1;
+174 +             let worker_id = shared.worker_id;
+175 +             let mut builder = thread::Builder::new().name(format!("block-r-{worker_id}"));
+176 +             if let Some(stack_size) = self.inner.stack_size {
+177 +                 builder = builder.stack_size(stack_size);
+178 +             }
+179 +             let inner = self.inner.clone();
+180 +             let join_handle = builder.spawn(move || inner.run(worker_id));
+181 +             match join_handle {
+182 +                 Ok(join_handle) => {
+183 +                     shared.worker_threads.push_back((worker_id, join_handle));
+184 +                     shared.worker_id += 1;
+185 +                 }
+186 +                 Err(err) => {
+187 +                     return Err(ScheduleError::new(ErrorKind::BlockSpawnErr, err));
+188 +                 }
+189 +             }
+190 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/executor/blocking_pool.rs:299:25
+    |
+299 | /                         for (thread_id, thread) in shared.worker_threads.iter().enumerate() {
+300 | |                             if thread.0 == worker_id {
+301 | |                                 shared.worker_threads.remove(thread_id);
+302 | |                                 break;
+303 | |                             }
+304 | |                         }
+    | |_________________________^
+    |
+help: try using `for_each` on the iterator
+    |
+299 ~                         shared.worker_threads.iter().enumerate().for_each(|(thread_id, thread)| {
+300 +                             if thread.0 == worker_id {
+301 +                                 shared.worker_threads.remove(thread_id);
+302 +                                 break;
+303 +                             }
+304 +                         });
+    |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/src/executor/parker.rs:76:9
+   |
+76 | /         for _ in 0..3 {
+77 | |             if self
+78 | |                 .state
+79 | |                 .compare_exchange_weak(NOTIFIED, IDLE, SeqCst, SeqCst)
+...  |
+84 | |             thread::yield_now();
+85 | |         }
+   | |_________^
+   |
+help: try using `for_each` on the iterator
+   |
+76 ~         0..3.for_each(|_| {
+77 +             if self
+78 +                 .state
+79 +                 .compare_exchange_weak(NOTIFIED, IDLE, SeqCst, SeqCst)
+80 +                 .is_ok()
+81 +             {
+82 +                 return;
+83 +             }
+84 +             thread::yield_now();
+85 +         });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/src/executor/async_pool.rs:68:9
+   |
+68 | /         for _ in 0..thread_num {
+69 | |             locals.push(LocalQueue::new());
+70 | |         }
+   | |_________^
+   |
+help: try using `for_each` on the iterator
+   |
+68 ~         0..thread_num.for_each(|_| {
+69 +             locals.push(LocalQueue::new());
+70 +         });
+   |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/executor/async_pool.rs:100:9
+    |
+100 | /         for item in join_handle.iter() {
+101 | |             item.unpark(self.handle.clone());
+102 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+100 ~         join_handle.iter().for_each(|item| {
+101 +             item.unpark(self.handle.clone());
+102 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/executor/async_pool.rs:138:9
+    |
+138 | /         for index in 0..self.num_workers {
+139 | |             let item = self.locals.get(index).unwrap();
+140 | |             if !item.is_empty() {
+141 | |                 return false;
+142 | |             }
+143 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+138 ~         0..self.num_workers.for_each(|index| {
+139 +             let item = self.locals.get(index).unwrap();
+140 +             if !item.is_empty() {
+141 +                 return false;
+142 +             }
+143 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/executor/async_pool.rs:245:9
+    |
+245 | /         for i in 0..num {
+246 | |             let i = (start + i) % num;
+247 | |             // skip the current worker's local queue
+248 | |             if i == index {
+...   |
+261 | |             }
+262 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+245 ~         0..num.for_each(|i| {
+246 +             let i = (start + i) % num;
+247 +             // skip the current worker's local queue
+248 +             if i == index {
+249 +                 continue;
+250 +             }
+251 +             let target = self.locals.get(i).unwrap();
+252 +             if let Some(task) = target.steal_into(local_run_queue) {
+253 +                 #[cfg(feature = "metrics")]
+254 +                 self.steal_times
+255 +                     .fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+256 + 
+257 +                 if self.sleeper.dec_searching_num() {
+258 +                     self.wake_up_rand_one()
+259 +                 };
+260 +                 return Some(task);
+261 +             }
+262 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/executor/async_pool.rs:371:9
+    |
+371 | /         for index in 0..self.inner.total {
+372 | |             let local_queue = self.exe_mng_info.create_local_queue(index);
+373 | |             let local_run_queue =
+374 | |                 Box::new(worker::Inner::new(local_queue, Parker::new(driver.clone())));
+...   |
+381 | |             }))
+382 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+371 ~         0..self.inner.total.for_each(|index| {
+372 +             let local_queue = self.exe_mng_info.create_local_queue(index);
+373 +             let local_run_queue =
+374 +                 Box::new(worker::Inner::new(local_queue, Parker::new(driver.clone())));
+375 +             workers.push(Arc::new(Worker {
+376 +                 index,
+377 +                 scheduler: self.exe_mng_info.clone(),
+378 +                 inner: RefCell::new(local_run_queue),
+379 +                 lifo: RefCell::new(None),
+380 +                 yielded: RefCell::new(Vec::new()),
+381 +             }))
+382 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/executor/async_pool.rs:384:9
+    |
+384 | /         for (worker_id, worker) in workers.drain(..).enumerate() {
+385 | |             let work_arc_handle = self.exe_mng_info.handle.clone();
+386 | |             #[cfg(feature = "metrics")]
+387 | |             self.inner.workers.lock().unwrap().push(worker.clone());
+...   |
+417 | |             }
+418 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+384 ~         workers.drain(..).enumerate().for_each(|(worker_id, worker)| {
+385 +             let work_arc_handle = self.exe_mng_info.handle.clone();
+386 +             #[cfg(feature = "metrics")]
+387 +             self.inner.workers.lock().unwrap().push(worker.clone());
+388 +             // set up thread attributes
+389 +             let mut builder = thread::Builder::new();
+390 + 
+391 +             if let Some(worker_name) = self.inner.worker_name.clone() {
+392 +                 builder = builder.name(format!("async-{worker_id}-{worker_name}"));
+393 +             } else {
+394 +                 builder = builder.name(format!("async-{worker_id}"));
+395 +             }
+396 + 
+397 +             if let Some(stack_size) = self.inner.stack_size {
+398 +                 builder = builder.stack_size(stack_size);
+399 +             }
+400 + 
+401 +             let parker = worker.inner.borrow().parker.clone();
+402 +             self.exe_mng_info.handles.write().unwrap().push(parker);
+403 + 
+404 +             let inner = self.inner.clone();
+405 + 
+406 +             if self.inner.is_affinity {
+407 +                 builder.spawn(move || {
+408 +                     let cpu_core_num = get_cpu_core();
+409 +                     let cpu_id = worker_id % cpu_core_num;
+410 +                     set_current_affinity(cpu_id).expect("set_current_affinity() fail!");
+411 +                     async_thread_proc(inner, worker, work_arc_handle);
+412 +                 })?;
+413 +             } else {
+414 +                 builder.spawn(move || {
+415 +                     async_thread_proc(inner, worker, work_arc_handle);
+416 +                 })?;
+417 +             }
+418 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/executor/async_pool.rs:518:13
+    |
+518 | /             for parker in worker_handles.drain(..) {
+519 | |                 parker.release();
+520 | |             }
+    | |_____________^
+    |
+help: try using `for_each` on the iterator
+    |
+518 ~             worker_handles.drain(..).for_each(|parker| {
+519 +                 parker.release();
+520 +             });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/executor/queue.rs:172:9
+    |
+172 | /         for _ in 0..cap {
+173 | |             buffer.push(UnsafeCell::new(MaybeUninit::uninit()));
+174 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+172 ~         0..cap.for_each(|_| {
+173 +             buffer.push(UnsafeCell::new(MaybeUninit::uninit()));
+174 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/executor/queue.rs:310:9
+    |
+310 | /         for _ in 0..count {
+311 | |             tmp_buf.push(UnsafeCell::new(MaybeUninit::uninit()));
+312 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+310 ~         0..count.for_each(|_| {
+311 +             tmp_buf.push(UnsafeCell::new(MaybeUninit::uninit()));
+312 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/executor/queue.rs:314:9
+    |
+314 | /         for dst_ptr in tmp_buf.iter().take(count) {
+315 | |             let src_idx = (src_front_steal & MASK) as usize;
+316 | |             let task_ptr = self.buffer[src_idx].get();
+317 | |             let task = unsafe { ptr::read(task_ptr).assume_init() };
+...   |
+321 | |             src_front_steal = src_front_steal.wrapping_add(1);
+322 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+314 ~         tmp_buf.iter().take(count).for_each(|dst_ptr| {
+315 +             let src_idx = (src_front_steal & MASK) as usize;
+316 +             let task_ptr = self.buffer[src_idx].get();
+317 +             let task = unsafe { ptr::read(task_ptr).assume_init() };
+318 +             unsafe {
+319 +                 ptr::write((*dst_ptr.get()).as_mut_ptr(), task);
+320 +             }
+321 +             src_front_steal = src_front_steal.wrapping_add(1);
+322 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/executor/queue.rs:381:9
+    |
+381 | /         for _ in 0..count {
+382 | |             let src_idx = (src_front_steal & MASK) as usize;
+383 | |             let des_idx = (dst_rear & MASK) as usize;
+384 | |
+...   |
+393 | |             dst_rear = dst_rear.wrapping_add(1);
+394 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+381 ~         0..count.for_each(|_| {
+382 +             let src_idx = (src_front_steal & MASK) as usize;
+383 +             let des_idx = (dst_rear & MASK) as usize;
+384 + 
+385 +             let task_ptr = self.buffer[src_idx].get();
+386 + 
+387 +             let task = unsafe { ptr::read(task_ptr).assume_init() };
+388 +             let ptr = dst.inner.buffer[des_idx].get();
+389 +             unsafe {
+390 +                 ptr::write((*ptr).as_mut_ptr(), task);
+391 +             }
+392 +             src_front_steal = src_front_steal.wrapping_add(1);
+393 +             dst_rear = dst_rear.wrapping_add(1);
+394 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/executor/queue.rs:441:9
+    |
+441 | /         for task_ptr in tasks {
+442 | |             let task = unsafe { ptr::read(task_ptr.get()).assume_init() };
+443 | |             list.push_back(task);
+444 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+441 ~         tasks.for_each(|task_ptr| {
+442 +             let task = unsafe { ptr::read(task_ptr.get()).assume_init() };
+443 +             list.push_back(task);
+444 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/executor/queue.rs:470:9
+    |
+470 | /         for _ in 1..num {
+471 | |             if let Some(task) = list.pop_front() {
+472 | |                 let idx = (curr & MASK) as usize;
+473 | |                 let ptr = inner_buf.buffer[idx].get();
+...   |
+481 | |             }
+482 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+470 ~         1..num.for_each(|_| {
+471 +             if let Some(task) = list.pop_front() {
+472 +                 let idx = (curr & MASK) as usize;
+473 +                 let ptr = inner_buf.buffer[idx].get();
+474 +                 unsafe {
+475 +                     ptr::write((*ptr).as_mut_ptr(), task);
+476 +                 }
+477 +                 curr = curr.wrapping_add(1);
+478 +                 count += 1;
+479 +             } else {
+480 +                 break;
+481 +             }
+482 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/io/buffered/async_buf_writer.rs:231:13
+    |
+231 | /             for buf in bufs {
+232 | |                 len = len.saturating_add(buf.len());
+233 | |             }
+    | |_____________^
+    |
+help: try using `for_each` on the iterator
+    |
+231 ~             bufs.for_each(|buf| {
+232 +                 len = len.saturating_add(buf.len());
+233 +             });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/io/buffered/async_buf_writer.rs:242:17
+    |
+242 | /                 for buf in bufs {
+243 | |                     this.buf.extend_from_slice(buf);
+244 | |                 }
+    | |_________________^
+    |
+help: try using `for_each` on the iterator
+    |
+242 ~                 bufs.for_each(|buf| {
+243 +                     this.buf.extend_from_slice(buf);
+244 +                 });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/io/buffered/async_buf_writer.rs:266:13
+    |
+266 | /             for buf in bufs {
+267 | |                 if buf.len() + this.buf.len() >= this.buf.capacity() {
+268 | |                     break;
+269 | |                 } else {
+...   |
+272 | |                 }
+273 | |             }
+    | |_____________^
+    |
+help: try using `for_each` on the iterator
+    |
+266 ~             bufs.for_each(|buf| {
+267 +                 if buf.len() + this.buf.len() >= this.buf.capacity() {
+268 +                     break;
+269 +                 } else {
+270 +                     this.buf.extend_from_slice(buf);
+271 +                     len += buf.len()
+272 +                 }
+273 +             });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/task/join_set.rs:218:9
+    |
+218 | /         for _ in 0..count {
+219 | |             match self.join_next().await {
+220 | |                 None => return Ok(()),
+221 | |                 Some(Ok(_)) => {}
+222 | |                 Some(Err(e)) => return Err(e),
+223 | |             }
+224 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+218 ~         0..count.for_each(|_| {
+219 +             match self.join_next().await {
+220 +                 None => return Ok(()),
+221 +                 Some(Ok(_)) => {}
+222 +                 Some(Err(e)) => return Err(e),
+223 +             }
+224 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/task/join_set.rs:244:9
+    |
+244 | /         for item in &list.done_list {
+245 | |             unsafe { (*item.handle.get()).cancel() }
+246 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+244 ~         &list.done_list.for_each(|item| {
+245 +             unsafe { (*item.handle.get()).cancel() }
+246 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/task/join_set.rs:247:9
+    |
+247 | /         for item in &list.wait_list {
+248 | |             unsafe { (*item.handle.get()).cancel() }
+249 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+247 ~         &list.wait_list.for_each(|item| {
+248 +             unsafe { (*item.handle.get()).cancel() }
+249 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/task/join_set.rs:427:9
+    |
+427 | /         for item in &list.done_list {
+428 | |             unsafe {
+429 | |                 (*item.handle.get()).cancel();
+430 | |                 drop(ManuallyDrop::take(&mut *item.handle.get()));
+431 | |             }
+432 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+427 ~         &list.done_list.for_each(|item| {
+428 +             unsafe {
+429 +                 (*item.handle.get()).cancel();
+430 +                 drop(ManuallyDrop::take(&mut *item.handle.get()));
+431 +             }
+432 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/task/join_set.rs:433:9
+    |
+433 | /         for item in &list.wait_list {
+434 | |             unsafe {
+435 | |                 (*item.handle.get()).cancel();
+436 | |                 drop(ManuallyDrop::take(&mut *item.handle.get()));
+437 | |             }
+438 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+433 ~         &list.wait_list.for_each(|item| {
+434 +             unsafe {
+435 +                 (*item.handle.get()).cancel();
+436 +                 drop(ManuallyDrop::take(&mut *item.handle.get()));
+437 +             }
+438 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/src/task/yield_now.rs:85:5
+   |
+85 | /     for waker in yielded.drain(..) {
+86 | |         waker.wake();
+87 | |     }
+   | |_____^
+   |
+help: try using `for_each` on the iterator
+   |
+85 ~     yielded.drain(..).for_each(|waker| {
+86 +         waker.wake();
+87 +     });
+   |
+
+warning: `ylong_runtime` (lib) generated 26 warnings (run `cargo fix --lib -p ylong_runtime` to apply 26 suggestions)
+warning: failed to automatically apply fixes suggested by rustc to crate `ylong_io_tcp_server`
+
+after fixes were automatically applied the compiler reported errors within these files:
+
+  * ylong_io/examples/ylong_io_tcp_server.rs
+
+This likely indicates a bug in either rustc or cargo itself,
+and we would appreciate a bug report! You're likely to see 
+a number of compiler warnings after this message which cargo
+attempted to fix but failed. If you could open an issue at
+https://github.com/rust-lang/rust/issues
+quoting the full output of this command we'd be very appreciative!
+Note that you may be able to make some more progress in the near-term
+fixing code with the `--broken-code` flag
+
+The following errors were reported:
+error[E0267]: `break` inside of a closure
+  --> ylong_io/examples/ylong_io_tcp_server.rs:64:37
+   |
+41 |         events.iter().for_each(|event| {
+   |                                ------- enclosing closure
+...
+64 |                                     break;
+   |                                     ^^^^^ cannot `break` inside of a closure
+
+error[E0267]: `break` inside of a closure
+  --> ylong_io/examples/ylong_io_tcp_server.rs:70:37
+   |
+41 |         events.iter().for_each(|event| {
+   |                                ------- enclosing closure
+...
+70 |                                     break;
+   |                                     ^^^^^ cannot `break` inside of a closure
+
+error[E0267]: `break` inside of a closure
+  --> ylong_io/examples/ylong_io_tcp_server.rs:89:37
+   |
+41 |         events.iter().for_each(|event| {
+   |                                ------- enclosing closure
+...
+89 |                                     break;
+   |                                     ^^^^^ cannot `break` inside of a closure
+
+error[E0267]: `break` inside of a closure
+  --> ylong_io/examples/ylong_io_tcp_server.rs:94:29
+   |
+41 |         events.iter().for_each(|event| {
+   |                                ------- enclosing closure
+...
+94 |                     None => break,
+   |                             ^^^^^ cannot `break` inside of a closure
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `std::ops::FromResidual`)
+  --> ylong_io/examples/ylong_io_tcp_server.rs:43:42
+   |
+41 |         events.iter().for_each(|event| {
+   |                                ------- this function should return `Result` or `Option` to accept `?`
+42 |             if SERVER == event.token() {
+43 |                 let ret = server.accept()?;
+   |                                          ^ cannot use the `?` operator in a closure that returns `()`
+   |
+   = help: the trait `std::ops::FromResidual<std::result::Result<std::convert::Infallible, std::io::Error>>` is not implemented for `()`
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `std::ops::FromResidual`)
+  --> ylong_io/examples/ylong_io_tcp_server.rs:52:18
+   |
+41 |         events.iter().for_each(|event| {
+   |                                ------- this function should return `Result` or `Option` to accept `?`
+...
+52 |                 )?;
+   |                  ^ cannot use the `?` operator in a closure that returns `()`
+   |
+   = help: the trait `std::ops::FromResidual<std::result::Result<std::convert::Infallible, std::io::Error>>` is not implemented for `()`
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `std::ops::FromResidual`)
+  --> ylong_io/examples/ylong_io_tcp_server.rs:62:64
+   |
+41 |         events.iter().for_each(|event| {
+   |                                ------- this function should return `Result` or `Option` to accept `?`
+...
+62 |                                     poll.deregister(connection)?;
+   |                                                                ^ cannot use the `?` operator in a closure that returns `()`
+   |
+   = help: the trait `std::ops::FromResidual<std::result::Result<std::convert::Infallible, std::io::Error>>` is not implemented for `()`
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `std::ops::FromResidual`)
+  --> ylong_io/examples/ylong_io_tcp_server.rs:63:97
+   |
+41 |         events.iter().for_each(|event| {
+   |                                ------- this function should return `Result` or `Option` to accept `?`
+...
+63 |                                     poll.register(connection, event.token(), Interest::READABLE)?;
+   |                                                                                                 ^ cannot use the `?` operator in a closure that returns `()`
+   |
+   = help: the trait `std::ops::FromResidual<std::result::Result<std::convert::Infallible, std::io::Error>>` is not implemented for `()`
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `std::ops::FromResidual`)
+  --> ylong_io/examples/ylong_io_tcp_server.rs:68:64
+   |
+41 |         events.iter().for_each(|event| {
+   |                                ------- this function should return `Result` or `Option` to accept `?`
+...
+68 |                                     poll.deregister(connection)?;
+   |                                                                ^ cannot use the `?` operator in a closure that returns `()`
+   |
+   = help: the trait `std::ops::FromResidual<std::result::Result<std::convert::Infallible, std::io::Error>>` is not implemented for `()`
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `std::ops::FromResidual`)
+  --> ylong_io/examples/ylong_io_tcp_server.rs:69:97
+   |
+41 |         events.iter().for_each(|event| {
+   |                                ------- this function should return `Result` or `Option` to accept `?`
+...
+69 |                                     poll.register(connection, event.token(), Interest::READABLE)?;
+   |                                                                                                 ^ cannot use the `?` operator in a closure that returns `()`
+   |
+   = help: the trait `std::ops::FromResidual<std::result::Result<std::convert::Infallible, std::io::Error>>` is not implemented for `()`
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `std::ops::FromResidual`)
+  --> ylong_io/examples/ylong_io_tcp_server.rs:78:64
+   |
+41 |         events.iter().for_each(|event| {
+   |                                ------- this function should return `Result` or `Option` to accept `?`
+...
+78 |                                     poll.deregister(connection)?;
+   |                                                                ^ cannot use the `?` operator in a closure that returns `()`
+   |
+   = help: the trait `std::ops::FromResidual<std::result::Result<std::convert::Infallible, std::io::Error>>` is not implemented for `()`
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `std::ops::FromResidual`)
+  --> ylong_io/examples/ylong_io_tcp_server.rs:88:64
+   |
+41 |         events.iter().for_each(|event| {
+   |                                ------- this function should return `Result` or `Option` to accept `?`
+...
+88 |                                     poll.deregister(connection)?;
+   |                                                                ^ cannot use the `?` operator in a closure that returns `()`
+   |
+   = help: the trait `std::ops::FromResidual<std::result::Result<std::convert::Infallible, std::io::Error>>` is not implemented for `()`
+
+error: aborting due to 12 previous errors
+
+Some errors have detailed explanations: E0267, E0277.
+For more information about an error, try `rustc --explain E0267`.
+Original diagnostics will follow.
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_io/examples/ylong_io_tcp_server.rs:41:9
+   |
+41 | /         for event in events.iter() {
+42 | |             if SERVER == event.token() {
+43 | |                 let ret = server.accept()?;
+44 | |                 let (mut stream, addr) = ret;
+...  |
+96 | |             }
+97 | |         }
+   | |_________^
+   |
+   = note: `#[warn(lint::warn_foreach)]` on by default
+help: try using `for_each` on the iterator
+   |
+41 ~         events.iter().for_each(|event| {
+42 +             if SERVER == event.token() {
+43 +                 let ret = server.accept()?;
+44 +                 let (mut stream, addr) = ret;
+45 +                 println!("Accept connection addr: {stream:?} {addr:?}");
+46 +                 let token = Token(unique_token.0 + 1);
+47 +                 unique_token = Token(unique_token.0 + 1);
+48 +                 poll.register(
+49 +                     &mut stream,
+50 +                     token,
+51 +                     Interest::READABLE.add(Interest::WRITABLE),
+52 +                 )?;
+53 +                 connections.insert(token, stream);
+54 +             } else {
+55 +                 match connections.get_mut(&event.token()) {
+56 +                     Some(connection) => {
+57 +                         if event.is_writable() {
+58 +                             // println!("server writable\n");
+59 +                             match connection.write(b"Hello client_from writable") {
+60 +                                 Err(err) => {
+61 +                                     println!("1.Send failed {err}");
+62 +                                     poll.deregister(connection)?;
+63 +                                     poll.register(connection, event.token(), Interest::READABLE)?;
+64 +                                     break;
+65 +                                 }
+66 +                                 Ok(n) => {
+67 +                                     println!("1.send len: {n}\n");
+68 +                                     poll.deregister(connection)?;
+69 +                                     poll.register(connection, event.token(), Interest::READABLE)?;
+70 +                                     break;
+71 +                                 }
+72 +                             }
+73 +                         } else if event.is_readable() {
+74 +                             println!("server readable\n");
+75 +                             let mut msg_buf = [0_u8; 100];
+76 +                             match connection.read(&mut msg_buf) {
+77 +                                 Ok(0) => {
+78 +                                     poll.deregister(connection)?;
+79 +                                 }
+80 +                                 Ok(n) => {
+81 +                                     if let Ok(str_buf) = from_utf8(&msg_buf[0..n]) {
+82 +                                         println!("recv msg : {str_buf:?}, len : {n}");
+83 +                                     } else {
+84 +                                         println!("Received (none UTF-8) data: {:?}", &msg_buf);
+85 +                                     }
+86 +                                 }
+87 +                                 Err(_n) => {
+88 +                                     poll.deregister(connection)?;
+89 +                                     break;
+90 +                                 }
+91 +                             }
+92 +                         }
+93 +                     }
+94 +                     None => break,
+95 +                 }
+96 +             }
+97 +         });
+   |
+
+warning: `ylong_io` (example "ylong_io_tcp_server") generated 1 warning (run `cargo fix --example "ylong_io_tcp_server"` to apply 1 suggestion)
+warning: failed to automatically apply fixes suggested by rustc to crate `ylong_runtime`
+
+after fixes were automatically applied the compiler reported errors within these files:
+
+  * /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/collections/linked_list.rs
+  * /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/collections/vec_deque/mod.rs
+  * /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs
+  * /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/std/src/collections/hash/set.rs
+  * ylong_runtime/src/executor/async_pool.rs
+  * ylong_runtime/src/executor/blocking_pool.rs
+  * ylong_runtime/src/executor/parker.rs
+  * ylong_runtime/src/executor/queue.rs
+  * ylong_runtime/src/io/buffered/async_buf_writer.rs
+  * ylong_runtime/src/io/read_buf.rs
+  * ylong_runtime/src/task/join_set.rs
+  * ylong_runtime/src/task/yield_now.rs
+
+This likely indicates a bug in either rustc or cargo itself,
+and we would appreciate a bug report! You're likely to see 
+a number of compiler warnings after this message which cargo
+attempted to fix but failed. If you could open an issue at
+https://github.com/rust-lang/rust/issues
+quoting the full output of this command we'd be very appreciative!
+Note that you may be able to make some more progress in the near-term
+fixing code with the `--broken-code` flag
+
+The following errors were reported:
+error[E0728]: `await` is only allowed inside `async` functions and blocks
+   --> ylong_runtime/src/task/join_set.rs:219:36
+    |
+218 |         0..count.for_each(|_| {
+    |                           --- this is not `async`
+219 |             match self.join_next().await {
+    |                                    ^^^^^ only allowed inside `async` functions and blocks
+
+error[E0728]: `await` is only allowed inside `async` functions and blocks
+   --> ylong_runtime/src/task/yield_now.rs:106:29
+    |
+104 |             0..1000.for_each(|_| {
+    |                              --- this is not `async`
+105 |                 i += 1;
+106 |                 yield_now().await;
+    |                             ^^^^^ only allowed inside `async` functions and blocks
+
+error[E0728]: `await` is only allowed inside `async` functions and blocks
+   --> ylong_runtime/src/task/yield_now.rs:114:29
+    |
+112 |             0..1000.for_each(|_| {
+    |                              --- this is not `async`
+113 |                 i += 1;
+114 |                 yield_now().await;
+    |                             ^^^^^ only allowed inside `async` functions and blocks
+
+error[E0728]: `await` is only allowed inside `async` functions and blocks
+   --> ylong_runtime/src/task/yield_now.rs:135:29
+    |
+133 |             0..1000.for_each(|_| {
+    |                              --- this is not `async`
+134 |                 i += 1;
+135 |                 yield_now().await;
+    |                             ^^^^^ only allowed inside `async` functions and blocks
+
+error[E0267]: `break` inside of a closure
+   --> ylong_runtime/src/executor/blocking_pool.rs:302:33
+    |
+299 |                         shared.worker_threads.iter().enumerate().for_each(|(thread_id, thread)| {
+    |                                                                           --------------------- enclosing closure
+...
+302 |                                 break;
+    |                                 ^^^^^ cannot `break` inside of a closure
+
+error[E0267]: `continue` inside of a closure
+   --> ylong_runtime/src/executor/async_pool.rs:249:17
+    |
+245 |         0..num.for_each(|i| {
+    |                         --- enclosing closure
+...
+249 |                 continue;
+    |                 ^^^^^^^^ cannot `continue` inside of a closure
+
+error[E0267]: `break` inside of a closure
+   --> ylong_runtime/src/executor/queue.rs:480:17
+    |
+470 |         1..num.for_each(|_| {
+    |                         --- enclosing closure
+...
+480 |                 break;
+    |                 ^^^^^ cannot `break` inside of a closure
+
+error[E0267]: `break` inside of a closure
+   --> ylong_runtime/src/io/buffered/async_buf_writer.rs:268:21
+    |
+266 |             bufs.for_each(|buf| {
+    |                           ----- enclosing closure
+267 |                 if buf.len() + this.buf.len() >= this.buf.capacity() {
+268 |                     break;
+    |                     ^^^^^ cannot `break` inside of a closure
+
+error[E0689]: can't call method `for_each` on type `usize`
+   --> ylong_runtime/src/task/join_set.rs:218:18
+    |
+218 |         0..count.for_each(|_| {
+    |                  ^^^^^^^^ can't call method `for_each` on type `usize`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+218 |         (0..count).for_each(|_| {
+    |         +        +
+
+error[E0308]: mismatched types
+   --> ylong_runtime/src/task/join_set.rs:221:32
+    |
+221 |                 Some(Ok(_)) => {}
+    |                                ^^ expected `Result<(), ScheduleError>`, found `()`
+    |
+    = note:   expected enum `std::result::Result<(), error::ScheduleError>`
+            found unit type `()`
+note: return type inferred to be `std::result::Result<(), error::ScheduleError>` here
+   --> ylong_runtime/src/task/join_set.rs:220:32
+    |
+220 |                 None => return Ok(()),
+    |                                ^^^^^^
+help: try adding an expression at the end of the block
+    |
+223 ~             }
+224 +             Ok(())
+    |
+
+error[E0599]: `std::collections::VecDeque<(usize, std::thread::JoinHandle<()>)>` is not an iterator
+  --> ylong_runtime/src/executor/blocking_pool.rs:94:21
+   |
+94 |               workers.for_each(|handle| {
+   |               --------^^^^^^^^ `std::collections::VecDeque<(usize, std::thread::JoinHandle<()>)>` is not an iterator
+  --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/collections/vec_deque/mod.rs:94:1
+  ::: /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/collections/vec_deque/mod.rs:97:1
+   |
+   = note: doesn't satisfy `_: Iterator`
+   |
+   = note: the following trait bounds were not satisfied:
+           `std::collections::VecDeque<(usize, std::thread::JoinHandle<()>)>: std::iter::Iterator`
+           which is required by `&mut std::collections::VecDeque<(usize, std::thread::JoinHandle<()>)>: std::iter::Iterator`
+
+error[E0689]: can't call method `for_each` on type `u8`
+   --> ylong_runtime/src/executor/blocking_pool.rs:171:48
+    |
+171 |         0..self.inner.max_permanent_thread_num.for_each(|_| {
+    |                                                ^^^^^^^^ can't call method `for_each` on type `u8`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+171 |         (0..self.inner.max_permanent_thread_num).for_each(|_| {
+    |         +                                      +
+
+error[E0308]: mismatched types
+   --> ylong_runtime/src/executor/blocking_pool.rs:182:36
+    |
+182 |                   Ok(join_handle) => {
+    |  ____________________________________^
+183 | |                     shared.worker_threads.push_back((worker_id, join_handle));
+184 | |                     shared.worker_id += 1;
+185 | |                 }
+    | |_________________^ expected `Result<_, ScheduleError>`, found `()`
+    |
+    = note:   expected enum `std::result::Result<_, error::ScheduleError>`
+            found unit type `()`
+note: return type inferred to be `std::result::Result<_, error::ScheduleError>` here
+   --> ylong_runtime/src/executor/blocking_pool.rs:187:28
+    |
+187 |                     return Err(ScheduleError::new(ErrorKind::BlockSpawnErr, err));
+    |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: try adding an expression at the end of the block
+    |
+189 ~             }
+190 +             Ok(())
+    |
+
+error[E0689]: can't call method `for_each` on type `{integer}`
+  --> ylong_runtime/src/executor/parker.rs:76:14
+   |
+76 |         0..3.for_each(|_| {
+   |              ^^^^^^^^ can't call method `for_each` on type `{integer}`
+   |
+help: you must surround the range in parentheses to call its `for_each` function
+   |
+76 |         (0..3).for_each(|_| {
+   |         +    +
+
+error[E0689]: can't call method `for_each` on type `usize`
+  --> ylong_runtime/src/executor/async_pool.rs:68:23
+   |
+68 |         0..thread_num.for_each(|_| {
+   |                       ^^^^^^^^ can't call method `for_each` on type `usize`
+   |
+help: you must surround the range in parentheses to call its `for_each` function
+   |
+68 |         (0..thread_num).for_each(|_| {
+   |         +             +
+
+error[E0689]: can't call method `for_each` on type `usize`
+   --> ylong_runtime/src/executor/async_pool.rs:138:29
+    |
+138 |         0..self.num_workers.for_each(|index| {
+    |                             ^^^^^^^^ can't call method `for_each` on type `usize`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+138 |         (0..self.num_workers).for_each(|index| {
+    |         +                   +
+
+error[E0282]: type annotations needed for `&_`
+   --> ylong_runtime/src/executor/async_pool.rs:139:17
+    |
+139 |             let item = self.locals.get(index).unwrap();
+    |                 ^^^^
+140 |             if !item.is_empty() {
+    |                      -------- type must be known at this point
+    |
+help: consider giving `item` an explicit type, where the placeholders `_` are specified
+    |
+139 |             let item: &_ = self.locals.get(index).unwrap();
+    |                     ++++
+
+error[E0689]: can't call method `for_each` on type `usize`
+   --> ylong_runtime/src/executor/async_pool.rs:245:16
+    |
+245 |         0..num.for_each(|i| {
+    |                ^^^^^^^^ can't call method `for_each` on type `usize`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+245 |         (0..num).for_each(|i| {
+    |         +      +
+
+error[E0282]: type annotations needed for `&_`
+   --> ylong_runtime/src/executor/async_pool.rs:251:17
+    |
+251 |             let target = self.locals.get(i).unwrap();
+    |                 ^^^^^^
+252 |             if let Some(task) = target.steal_into(local_run_queue) {
+    |                                        ---------- type must be known at this point
+    |
+help: consider giving `target` an explicit type, where the placeholders `_` are specified
+    |
+251 |             let target: &_ = self.locals.get(i).unwrap();
+    |                       ++++
+
+error[E0308]: mismatched types
+   --> ylong_runtime/src/executor/async_pool.rs:252:13
+    |
+252 | /             if let Some(task) = target.steal_into(local_run_queue) {
+253 | |                 #[cfg(feature = "metrics")]
+254 | |                 self.steal_times
+255 | |                     .fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+...   |
+260 | |                 return Some(task);
+261 | |             }
+    | |_____________^ expected `Option<_>`, found `()`
+    |
+    = note:   expected enum `std::option::Option<_>`
+            found unit type `()`
+note: return type inferred to be `std::option::Option<_>` here
+   --> ylong_runtime/src/executor/async_pool.rs:260:24
+    |
+260 |                 return Some(task);
+    |                        ^^^^^^^^^^
+help: try adding an expression at the end of the block
+    |
+261 ~             }
+262 +             None
+    |
+261 ~             }
+262 +             Some(())
+    |
+
+error[E0689]: can't call method `for_each` on type `usize`
+   --> ylong_runtime/src/executor/async_pool.rs:371:29
+    |
+371 |         0..self.inner.total.for_each(|index| {
+    |                             ^^^^^^^^ can't call method `for_each` on type `usize`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+371 |         (0..self.inner.total).for_each(|index| {
+    |         +                   +
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `std::ops::FromResidual`)
+   --> ylong_runtime/src/executor/async_pool.rs:412:19
+    |
+384 |         workers.drain(..).enumerate().for_each(|(worker_id, worker)| {
+    |                                                --------------------- this function should return `Result` or `Option` to accept `?`
+...
+412 |                 })?;
+    |                   ^ cannot use the `?` operator in a closure that returns `()`
+    |
+    = help: the trait `std::ops::FromResidual<std::result::Result<std::convert::Infallible, std::io::Error>>` is not implemented for `()`
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `std::ops::FromResidual`)
+   --> ylong_runtime/src/executor/async_pool.rs:416:19
+    |
+384 |         workers.drain(..).enumerate().for_each(|(worker_id, worker)| {
+    |                                                --------------------- this function should return `Result` or `Option` to accept `?`
+...
+416 |                 })?;
+    |                   ^ cannot use the `?` operator in a closure that returns `()`
+    |
+    = help: the trait `std::ops::FromResidual<std::result::Result<std::convert::Infallible, std::io::Error>>` is not implemented for `()`
+
+error[E0689]: can't call method `for_each` on type `u16`
+   --> ylong_runtime/src/executor/queue.rs:172:16
+    |
+172 |         0..cap.for_each(|_| {
+    |                ^^^^^^^^ can't call method `for_each` on type `u16`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+172 |         (0..cap).for_each(|_| {
+    |         +      +
+
+error[E0689]: can't call method `for_each` on type `usize`
+   --> ylong_runtime/src/executor/queue.rs:310:18
+    |
+310 |         0..count.for_each(|_| {
+    |                  ^^^^^^^^ can't call method `for_each` on type `usize`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+310 |         (0..count).for_each(|_| {
+    |         +        +
+
+error[E0689]: can't call method `for_each` on type `u16`
+   --> ylong_runtime/src/executor/queue.rs:381:18
+    |
+381 |         0..count.for_each(|_| {
+    |                  ^^^^^^^^ can't call method `for_each` on type `u16`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+381 |         (0..count).for_each(|_| {
+    |         +        +
+
+error[E0599]: `std::vec::Vec<std::cell::UnsafeCell<std::mem::MaybeUninit<task::Task>>>` is not an iterator
+   --> ylong_runtime/src/executor/queue.rs:441:15
+    |
+441 |         tasks.for_each(|task_ptr| {
+    |         ------^^^^^^^^ `std::vec::Vec<std::cell::UnsafeCell<std::mem::MaybeUninit<task::Task>>>` is not an iterator; try calling `.into_iter()` or `.iter()`
+   --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs:396:1
+    |
+    = note: doesn't satisfy `_: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `std::vec::Vec<std::cell::UnsafeCell<std::mem::MaybeUninit<task::Task>>>: std::iter::Iterator`
+            which is required by `&mut std::vec::Vec<std::cell::UnsafeCell<std::mem::MaybeUninit<task::Task>>>: std::iter::Iterator`
+            `[std::cell::UnsafeCell<std::mem::MaybeUninit<task::Task>>]: std::iter::Iterator`
+            which is required by `&mut [std::cell::UnsafeCell<std::mem::MaybeUninit<task::Task>>]: std::iter::Iterator`
+
+error[E0689]: can't call method `for_each` on type `usize`
+   --> ylong_runtime/src/executor/queue.rs:470:16
+    |
+470 |         1..num.for_each(|_| {
+    |                ^^^^^^^^ can't call method `for_each` on type `usize`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+470 |         (1..num).for_each(|_| {
+    |         +      +
+
+error[E0599]: `&[std::io::IoSlice<'_>]` is not an iterator
+   --> ylong_runtime/src/io/buffered/async_buf_writer.rs:231:18
+    |
+231 |             bufs.for_each(|buf| {
+    |             -----^^^^^^^^ `&[std::io::IoSlice<'_>]` is not an iterator; try calling `.iter()`
+    |
+    = note: the following trait bounds were not satisfied:
+            `&[std::io::IoSlice<'_>]: std::iter::Iterator`
+            which is required by `&mut &[std::io::IoSlice<'_>]: std::iter::Iterator`
+            `[std::io::IoSlice<'_>]: std::iter::Iterator`
+            which is required by `&mut [std::io::IoSlice<'_>]: std::iter::Iterator`
+
+error[E0599]: `&[std::io::IoSlice<'_>]` is not an iterator
+   --> ylong_runtime/src/io/buffered/async_buf_writer.rs:242:22
+    |
+242 |                 bufs.for_each(|buf| {
+    |                 -----^^^^^^^^ `&[std::io::IoSlice<'_>]` is not an iterator; try calling `.iter()`
+    |
+    = note: the following trait bounds were not satisfied:
+            `&[std::io::IoSlice<'_>]: std::iter::Iterator`
+            which is required by `&mut &[std::io::IoSlice<'_>]: std::iter::Iterator`
+            `[std::io::IoSlice<'_>]: std::iter::Iterator`
+            which is required by `&mut [std::io::IoSlice<'_>]: std::iter::Iterator`
+
+error[E0599]: `&[std::io::IoSlice<'_>]` is not an iterator
+   --> ylong_runtime/src/io/buffered/async_buf_writer.rs:266:18
+    |
+266 |             bufs.for_each(|buf| {
+    |             -----^^^^^^^^ `&[std::io::IoSlice<'_>]` is not an iterator; try calling `.iter()`
+    |
+    = note: the following trait bounds were not satisfied:
+            `&[std::io::IoSlice<'_>]: std::iter::Iterator`
+            which is required by `&mut &[std::io::IoSlice<'_>]: std::iter::Iterator`
+            `[std::io::IoSlice<'_>]: std::iter::Iterator`
+            which is required by `&mut [std::io::IoSlice<'_>]: std::iter::Iterator`
+
+error[E0599]: `[std::mem::MaybeUninit<u8>]` is not an iterator
+   --> ylong_runtime/src/io/read_buf.rs:310:31
+    |
+310 |         &mut uninit_buf[0..8].for_each(|var| {
+    |              -----------------^^^^^^^^ `[std::mem::MaybeUninit<u8>]` is not an iterator; try calling `.into_iter()` or `.iter()`
+    |
+    = note: the following trait bounds were not satisfied:
+            `[std::mem::MaybeUninit<u8>]: std::iter::Iterator`
+            which is required by `&mut [std::mem::MaybeUninit<u8>]: std::iter::Iterator`
+
+error[E0599]: `std::collections::LinkedList<std::sync::Arc<task::join_set::JoinEntry<R>>>` is not an iterator
+   --> ylong_runtime/src/task/join_set.rs:244:25
+    |
+244 |           &list.done_list.for_each(|item| {
+    |            ---------------^^^^^^^^ `std::collections::LinkedList<std::sync::Arc<task::join_set::JoinEntry<R>>>` is not an iterator
+   --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/collections/linked_list.rs:51:1
+   ::: /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/collections/linked_list.rs:54:1
+    |
+    = note: doesn't satisfy `_: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `std::collections::LinkedList<std::sync::Arc<task::join_set::JoinEntry<R>>>: std::iter::Iterator`
+            which is required by `&mut std::collections::LinkedList<std::sync::Arc<task::join_set::JoinEntry<R>>>: std::iter::Iterator`
+
+error[E0599]: `std::collections::HashSet<std::sync::Arc<task::join_set::JoinEntry<R>>>` is not an iterator
+   --> ylong_runtime/src/task/join_set.rs:247:25
+    |
+247 |         &list.wait_list.for_each(|item| {
+    |          ---------------^^^^^^^^ `std::collections::HashSet<std::sync::Arc<task::join_set::JoinEntry<R>>>` is not an iterator
+   --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/std/src/collections/hash/set.rs:107:1
+    |
+    = note: doesn't satisfy `_: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `std::collections::HashSet<std::sync::Arc<task::join_set::JoinEntry<R>>>: std::iter::Iterator`
+            which is required by `&mut std::collections::HashSet<std::sync::Arc<task::join_set::JoinEntry<R>>>: std::iter::Iterator`
+
+error[E0599]: `std::collections::LinkedList<std::sync::Arc<task::join_set::JoinEntry<R>>>` is not an iterator
+   --> ylong_runtime/src/task/join_set.rs:427:25
+    |
+427 |           &list.done_list.for_each(|item| {
+    |            ---------------^^^^^^^^ `std::collections::LinkedList<std::sync::Arc<task::join_set::JoinEntry<R>>>` is not an iterator
+   --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/collections/linked_list.rs:51:1
+   ::: /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/collections/linked_list.rs:54:1
+    |
+    = note: doesn't satisfy `_: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `std::collections::LinkedList<std::sync::Arc<task::join_set::JoinEntry<R>>>: std::iter::Iterator`
+            which is required by `&mut std::collections::LinkedList<std::sync::Arc<task::join_set::JoinEntry<R>>>: std::iter::Iterator`
+
+error[E0599]: `std::collections::HashSet<std::sync::Arc<task::join_set::JoinEntry<R>>>` is not an iterator
+   --> ylong_runtime/src/task/join_set.rs:433:25
+    |
+433 |         &list.wait_list.for_each(|item| {
+    |          ---------------^^^^^^^^ `std::collections::HashSet<std::sync::Arc<task::join_set::JoinEntry<R>>>` is not an iterator
+   --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/std/src/collections/hash/set.rs:107:1
+    |
+    = note: doesn't satisfy `_: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `std::collections::HashSet<std::sync::Arc<task::join_set::JoinEntry<R>>>: std::iter::Iterator`
+            which is required by `&mut std::collections::HashSet<std::sync::Arc<task::join_set::JoinEntry<R>>>: std::iter::Iterator`
+
+error[E0689]: can't call method `for_each` on type `{integer}`
+   --> ylong_runtime/src/task/yield_now.rs:104:21
+    |
+104 |             0..1000.for_each(|_| {
+    |                     ^^^^^^^^ can't call method `for_each` on type `{integer}`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+104 |             (0..1000).for_each(|_| {
+    |             +       +
+
+error[E0689]: can't call method `for_each` on type `{integer}`
+   --> ylong_runtime/src/task/yield_now.rs:112:21
+    |
+112 |             0..1000.for_each(|_| {
+    |                     ^^^^^^^^ can't call method `for_each` on type `{integer}`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+112 |             (0..1000).for_each(|_| {
+    |             +       +
+
+error[E0689]: can't call method `for_each` on type `{integer}`
+   --> ylong_runtime/src/task/yield_now.rs:133:21
+    |
+133 |             0..1000.for_each(|_| {
+    |                     ^^^^^^^^ can't call method `for_each` on type `{integer}`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+133 |             (0..1000).for_each(|_| {
+    |             +       +
+
+error: aborting due to 39 previous errors
+
+Some errors have detailed explanations: E0267, E0277, E0282, E0308, E0599, E0689, E0728.
+For more information about an error, try `rustc --explain E0267`.
+Original diagnostics will follow.
+
+warning: failed to automatically apply fixes suggested by rustc to crate `singleton_runtime`
+
+after fixes were automatically applied the compiler reported errors within these files:
+
+  * /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs
+  * ylong_runtime/tests/singleton_runtime.rs
+
+This likely indicates a bug in either rustc or cargo itself,
+and we would appreciate a bug report! You're likely to see 
+a number of compiler warnings after this message which cargo
+attempted to fix but failed. If you could open an issue at
+https://github.com/rust-lang/rust/issues
+quoting the full output of this command we'd be very appreciative!
+Note that you may be able to make some more progress in the near-term
+fixing code with the `--broken-code` flag
+
+The following errors were reported:
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/tests/singleton_runtime.rs:46:5
+   |
+46 | /     for _ in 0..THREAD_NUM {
+47 | |         let thread_handler = std::thread::spawn(move || {
+48 | |             let mut handles = Vec::with_capacity(SPAWN_NUM);
+49 | |             0..SPAWN_NUM.for_each(|i| {
+...  |
+57 | |         thread_handlers.push(thread_handler);
+58 | |     }
+   | |_____^
+   |
+   = note: `#[warn(lint::warn_foreach)]` on by default
+help: try using `for_each` on the iterator
+   |
+46 ~     0..THREAD_NUM.for_each(|_| {
+47 +         let thread_handler = std::thread::spawn(move || {
+48 +             let mut handles = Vec::with_capacity(SPAWN_NUM);
+49 +             0..SPAWN_NUM.for_each(|i| {
+50 +                 handles.push(ylong_runtime::spawn(test_async_in_async(i, i + 1)));
+51 +             });
+52 +             handles.into_iter().enumerate().for_each(|(times, handle)| {
+53 +                 let ret = ylong_runtime::block_on(handle);
+54 +                 assert_eq!(ret.unwrap(), (times, times + 1));
+55 +             });
+56 +         });
+57 +         thread_handlers.push(thread_handler);
+58 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/tests/singleton_runtime.rs:74:5
+   |
+74 | /     for _ in 0..THREAD_NUM {
+75 | |         let thread_handler = std::thread::spawn(move || {
+76 | |             let mut handles = Vec::with_capacity(SPAWN_NUM);
+77 | |             0..SPAWN_NUM.for_each(|i| {
+...  |
+85 | |         thread_handlers.push(thread_handler);
+86 | |     }
+   | |_____^
+   |
+help: try using `for_each` on the iterator
+   |
+74 ~     0..THREAD_NUM.for_each(|_| {
+75 +         let thread_handler = std::thread::spawn(move || {
+76 +             let mut handles = Vec::with_capacity(SPAWN_NUM);
+77 +             0..SPAWN_NUM.for_each(|i| {
+78 +                 handles.push(ylong_runtime::spawn(test_async_in_async(i, i + 1)));
+79 +             });
+80 +             handles.into_iter().enumerate().for_each(|(times, handle)| {
+81 +                 let ret = ylong_runtime::block_on(handle);
+82 +                 assert_eq!(ret.unwrap(), (times, times + 1));
+83 +             });
+84 +         });
+85 +         thread_handlers.push(thread_handler);
+86 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/tests/singleton_runtime.rs:102:5
+    |
+102 | /     for _ in 0..THREAD_NUM {
+103 | |         let thread_handler = std::thread::spawn(move || {
+104 | |             let mut handles = Vec::with_capacity(SPAWN_NUM);
+105 | |             let task_builder = TaskBuilder::new();
+...   |
+114 | |         thread_handlers.push(thread_handler);
+115 | |     }
+    | |_____^
+    |
+help: try using `for_each` on the iterator
+    |
+102 ~     0..THREAD_NUM.for_each(|_| {
+103 +         let thread_handler = std::thread::spawn(move || {
+104 +             let mut handles = Vec::with_capacity(SPAWN_NUM);
+105 +             let task_builder = TaskBuilder::new();
+106 +             0..SPAWN_NUM.for_each(|i| {
+107 +                 handles.push(task_builder.spawn(test_async_in_async(i, i + 1)));
+108 +             });
+109 +             handles.into_iter().enumerate().for_each(|(times, handle)| {
+110 +                 let ret = ylong_runtime::block_on(handle);
+111 +                 assert_eq!(ret.unwrap(), (times, times + 1));
+112 +             });
+113 +         });
+114 +         thread_handlers.push(thread_handler);
+115 +     });
+    |
+
+error[E0689]: can't call method `for_each` on type `usize`
+  --> ylong_runtime/tests/singleton_runtime.rs:49:26
+   |
+49 |             0..SPAWN_NUM.for_each(|i| {
+   |                          ^^^^^^^^ can't call method `for_each` on type `usize`
+   |
+help: you must surround the range in parentheses to call its `for_each` function
+   |
+49 |             (0..SPAWN_NUM).for_each(|i| {
+   |             +            +
+
+error[E0599]: `std::vec::Vec<std::thread::JoinHandle<()>>` is not an iterator
+  --> ylong_runtime/tests/singleton_runtime.rs:59:21
+   |
+59 |     thread_handlers.for_each(|h| {
+   |     ----------------^^^^^^^^ `std::vec::Vec<std::thread::JoinHandle<()>>` is not an iterator; try calling `.into_iter()` or `.iter()`
+  --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs:396:1
+   |
+   = note: doesn't satisfy `_: Iterator`
+   |
+   = note: the following trait bounds were not satisfied:
+           `std::vec::Vec<std::thread::JoinHandle<()>>: std::iter::Iterator`
+           which is required by `&mut std::vec::Vec<std::thread::JoinHandle<()>>: std::iter::Iterator`
+           `[std::thread::JoinHandle<()>]: std::iter::Iterator`
+           which is required by `&mut [std::thread::JoinHandle<()>]: std::iter::Iterator`
+
+error[E0689]: can't call method `for_each` on type `usize`
+  --> ylong_runtime/tests/singleton_runtime.rs:77:26
+   |
+77 |             0..SPAWN_NUM.for_each(|i| {
+   |                          ^^^^^^^^ can't call method `for_each` on type `usize`
+   |
+help: you must surround the range in parentheses to call its `for_each` function
+   |
+77 |             (0..SPAWN_NUM).for_each(|i| {
+   |             +            +
+
+error[E0599]: `std::vec::Vec<std::thread::JoinHandle<()>>` is not an iterator
+  --> ylong_runtime/tests/singleton_runtime.rs:87:21
+   |
+87 |     thread_handlers.for_each(|h| {
+   |     ----------------^^^^^^^^ `std::vec::Vec<std::thread::JoinHandle<()>>` is not an iterator; try calling `.into_iter()` or `.iter()`
+  --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs:396:1
+   |
+   = note: doesn't satisfy `_: Iterator`
+   |
+   = note: the following trait bounds were not satisfied:
+           `std::vec::Vec<std::thread::JoinHandle<()>>: std::iter::Iterator`
+           which is required by `&mut std::vec::Vec<std::thread::JoinHandle<()>>: std::iter::Iterator`
+           `[std::thread::JoinHandle<()>]: std::iter::Iterator`
+           which is required by `&mut [std::thread::JoinHandle<()>]: std::iter::Iterator`
+
+error[E0689]: can't call method `for_each` on type `usize`
+   --> ylong_runtime/tests/singleton_runtime.rs:106:26
+    |
+106 |             0..SPAWN_NUM.for_each(|i| {
+    |                          ^^^^^^^^ can't call method `for_each` on type `usize`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+106 |             (0..SPAWN_NUM).for_each(|i| {
+    |             +            +
+
+error[E0599]: `std::vec::Vec<std::thread::JoinHandle<()>>` is not an iterator
+   --> ylong_runtime/tests/singleton_runtime.rs:116:21
+    |
+116 |     thread_handlers.for_each(|h| {
+    |     ----------------^^^^^^^^ `std::vec::Vec<std::thread::JoinHandle<()>>` is not an iterator; try calling `.into_iter()` or `.iter()`
+   --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs:396:1
+    |
+    = note: doesn't satisfy `_: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `std::vec::Vec<std::thread::JoinHandle<()>>: std::iter::Iterator`
+            which is required by `&mut std::vec::Vec<std::thread::JoinHandle<()>>: std::iter::Iterator`
+            `[std::thread::JoinHandle<()>]: std::iter::Iterator`
+            which is required by `&mut [std::thread::JoinHandle<()>]: std::iter::Iterator`
+
+error: aborting due to 6 previous errors; 3 warnings emitted
+
+Some errors have detailed explanations: E0599, E0689.
+For more information about an error, try `rustc --explain E0599`.
+Original diagnostics will follow.
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/tests/singleton_runtime.rs:46:5
+   |
+46 | /     for _ in 0..THREAD_NUM {
+47 | |         let thread_handler = std::thread::spawn(move || {
+48 | |             let mut handles = Vec::with_capacity(SPAWN_NUM);
+49 | |             for i in 0..SPAWN_NUM {
+...  |
+57 | |         thread_handlers.push(thread_handler);
+58 | |     }
+   | |_____^
+   |
+   = note: `#[warn(lint::warn_foreach)]` on by default
+help: try using `for_each` on the iterator
+   |
+46 ~     0..THREAD_NUM.for_each(|_| {
+47 +         let thread_handler = std::thread::spawn(move || {
+48 +             let mut handles = Vec::with_capacity(SPAWN_NUM);
+49 +             for i in 0..SPAWN_NUM {
+50 +                 handles.push(ylong_runtime::spawn(test_async_in_async(i, i + 1)));
+51 +             }
+52 +             for (times, handle) in handles.into_iter().enumerate() {
+53 +                 let ret = ylong_runtime::block_on(handle);
+54 +                 assert_eq!(ret.unwrap(), (times, times + 1));
+55 +             }
+56 +         });
+57 +         thread_handlers.push(thread_handler);
+58 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/tests/singleton_runtime.rs:49:13
+   |
+49 | /             for i in 0..SPAWN_NUM {
+50 | |                 handles.push(ylong_runtime::spawn(test_async_in_async(i, i + 1)));
+51 | |             }
+   | |_____________^
+   |
+help: try using `for_each` on the iterator
+   |
+49 ~             0..SPAWN_NUM.for_each(|i| {
+50 +                 handles.push(ylong_runtime::spawn(test_async_in_async(i, i + 1)));
+51 +             });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/tests/singleton_runtime.rs:52:13
+   |
+52 | /             for (times, handle) in handles.into_iter().enumerate() {
+53 | |                 let ret = ylong_runtime::block_on(handle);
+54 | |                 assert_eq!(ret.unwrap(), (times, times + 1));
+55 | |             }
+   | |_____________^
+   |
+help: try using `for_each` on the iterator
+   |
+52 ~             handles.into_iter().enumerate().for_each(|(times, handle)| {
+53 +                 let ret = ylong_runtime::block_on(handle);
+54 +                 assert_eq!(ret.unwrap(), (times, times + 1));
+55 +             });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/tests/singleton_runtime.rs:59:5
+   |
+59 | /     for h in thread_handlers {
+60 | |         h.join().unwrap();
+61 | |     }
+   | |_____^
+   |
+help: try using `for_each` on the iterator
+   |
+59 ~     thread_handlers.for_each(|h| {
+60 +         h.join().unwrap();
+61 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/tests/singleton_runtime.rs:74:5
+   |
+74 | /     for _ in 0..THREAD_NUM {
+75 | |         let thread_handler = std::thread::spawn(move || {
+76 | |             let mut handles = Vec::with_capacity(SPAWN_NUM);
+77 | |             for i in 0..SPAWN_NUM {
+...  |
+85 | |         thread_handlers.push(thread_handler);
+86 | |     }
+   | |_____^
+   |
+help: try using `for_each` on the iterator
+   |
+74 ~     0..THREAD_NUM.for_each(|_| {
+75 +         let thread_handler = std::thread::spawn(move || {
+76 +             let mut handles = Vec::with_capacity(SPAWN_NUM);
+77 +             for i in 0..SPAWN_NUM {
+78 +                 handles.push(ylong_runtime::spawn(test_async_in_async(i, i + 1)));
+79 +             }
+80 +             for (times, handle) in handles.into_iter().enumerate() {
+81 +                 let ret = ylong_runtime::block_on(handle);
+82 +                 assert_eq!(ret.unwrap(), (times, times + 1));
+83 +             }
+84 +         });
+85 +         thread_handlers.push(thread_handler);
+86 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/tests/singleton_runtime.rs:77:13
+   |
+77 | /             for i in 0..SPAWN_NUM {
+78 | |                 handles.push(ylong_runtime::spawn(test_async_in_async(i, i + 1)));
+79 | |             }
+   | |_____________^
+   |
+help: try using `for_each` on the iterator
+   |
+77 ~             0..SPAWN_NUM.for_each(|i| {
+78 +                 handles.push(ylong_runtime::spawn(test_async_in_async(i, i + 1)));
+79 +             });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/tests/singleton_runtime.rs:80:13
+   |
+80 | /             for (times, handle) in handles.into_iter().enumerate() {
+81 | |                 let ret = ylong_runtime::block_on(handle);
+82 | |                 assert_eq!(ret.unwrap(), (times, times + 1));
+83 | |             }
+   | |_____________^
+   |
+help: try using `for_each` on the iterator
+   |
+80 ~             handles.into_iter().enumerate().for_each(|(times, handle)| {
+81 +                 let ret = ylong_runtime::block_on(handle);
+82 +                 assert_eq!(ret.unwrap(), (times, times + 1));
+83 +             });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/tests/singleton_runtime.rs:87:5
+   |
+87 | /     for h in thread_handlers {
+88 | |         h.join().unwrap();
+89 | |     }
+   | |_____^
+   |
+help: try using `for_each` on the iterator
+   |
+87 ~     thread_handlers.for_each(|h| {
+88 +         h.join().unwrap();
+89 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/tests/singleton_runtime.rs:102:5
+    |
+102 | /     for _ in 0..THREAD_NUM {
+103 | |         let thread_handler = std::thread::spawn(move || {
+104 | |             let mut handles = Vec::with_capacity(SPAWN_NUM);
+105 | |             let task_builder = TaskBuilder::new();
+...   |
+114 | |         thread_handlers.push(thread_handler);
+115 | |     }
+    | |_____^
+    |
+help: try using `for_each` on the iterator
+    |
+102 ~     0..THREAD_NUM.for_each(|_| {
+103 +         let thread_handler = std::thread::spawn(move || {
+104 +             let mut handles = Vec::with_capacity(SPAWN_NUM);
+105 +             let task_builder = TaskBuilder::new();
+106 +             for i in 0..SPAWN_NUM {
+107 +                 handles.push(task_builder.spawn(test_async_in_async(i, i + 1)));
+108 +             }
+109 +             for (times, handle) in handles.into_iter().enumerate() {
+110 +                 let ret = ylong_runtime::block_on(handle);
+111 +                 assert_eq!(ret.unwrap(), (times, times + 1));
+112 +             }
+113 +         });
+114 +         thread_handlers.push(thread_handler);
+115 +     });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/tests/singleton_runtime.rs:106:13
+    |
+106 | /             for i in 0..SPAWN_NUM {
+107 | |                 handles.push(task_builder.spawn(test_async_in_async(i, i + 1)));
+108 | |             }
+    | |_____________^
+    |
+help: try using `for_each` on the iterator
+    |
+106 ~             0..SPAWN_NUM.for_each(|i| {
+107 +                 handles.push(task_builder.spawn(test_async_in_async(i, i + 1)));
+108 +             });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/tests/singleton_runtime.rs:109:13
+    |
+109 | /             for (times, handle) in handles.into_iter().enumerate() {
+110 | |                 let ret = ylong_runtime::block_on(handle);
+111 | |                 assert_eq!(ret.unwrap(), (times, times + 1));
+112 | |             }
+    | |_____________^
+    |
+help: try using `for_each` on the iterator
+    |
+109 ~             handles.into_iter().enumerate().for_each(|(times, handle)| {
+110 +                 let ret = ylong_runtime::block_on(handle);
+111 +                 assert_eq!(ret.unwrap(), (times, times + 1));
+112 +             });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/tests/singleton_runtime.rs:116:5
+    |
+116 | /     for h in thread_handlers {
+117 | |         h.join().unwrap();
+118 | |     }
+    | |_____^
+    |
+help: try using `for_each` on the iterator
+    |
+116 ~     thread_handlers.for_each(|h| {
+117 +         h.join().unwrap();
+118 +     });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/io/read_buf.rs:310:9
+    |
+310 | /         for var in &mut uninit_buf[0..8] {
+311 | |             if len < filled {
+312 | |                 var.write(3);
+313 | |             } else {
+...   |
+316 | |             len += 1;
+317 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+310 ~         &mut uninit_buf[0..8].for_each(|var| {
+311 +             if len < filled {
+312 +                 var.write(3);
+313 +             } else {
+314 +                 var.write(0);
+315 +             }
+316 +             len += 1;
+317 +         });
+    |
+
+warning: `ylong_runtime` (test "singleton_runtime") generated 12 warnings (run `cargo fix --test "singleton_runtime"` to apply 12 suggestions)
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/task/yield_now.rs:104:13
+    |
+104 | /             for _ in 0..1000 {
+105 | |                 i += 1;
+106 | |                 yield_now().await;
+107 | |             }
+    | |_____________^
+    |
+help: try using `for_each` on the iterator
+    |
+104 ~             0..1000.for_each(|_| {
+105 +                 i += 1;
+106 +                 yield_now().await;
+107 +             });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/task/yield_now.rs:112:13
+    |
+112 | /             for _ in 0..1000 {
+113 | |                 i += 1;
+114 | |                 yield_now().await;
+115 | |             }
+    | |_____________^
+    |
+help: try using `for_each` on the iterator
+    |
+112 ~             0..1000.for_each(|_| {
+113 +                 i += 1;
+114 +                 yield_now().await;
+115 +             });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/src/task/yield_now.rs:133:13
+    |
+133 | /             for _ in 0..1000 {
+134 | |                 i += 1;
+135 | |                 yield_now().await;
+136 | |             }
+    | |_____________^
+    |
+help: try using `for_each` on the iterator
+    |
+133 ~             0..1000.for_each(|_| {
+134 +                 i += 1;
+135 +                 yield_now().await;
+136 +             });
+    |
+
+warning: failed to automatically apply fixes suggested by rustc to crate `ylong_tokio_schedule`
+
+after fixes were automatically applied the compiler reported errors within these files:
+
+  * /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs
+  * ylong_runtime/examples/ylong_tokio_schedule.rs
+
+This likely indicates a bug in either rustc or cargo itself,
+and we would appreciate a bug report! You're likely to see 
+a number of compiler warnings after this message which cargo
+attempted to fix but failed. If you could open an issue at
+https://github.com/rust-lang/rust/issues
+quoting the full output of this command we'd be very appreciative!
+Note that you may be able to make some more progress in the near-term
+fixing code with the `--broken-code` flag
+
+The following errors were reported:
+error[E0689]: can't call method `for_each` on type `{integer}`
+  --> ylong_runtime/examples/ylong_tokio_schedule.rs:28:11
+   |
+28 |     1..15.for_each(|j| {
+   |           ^^^^^^^^ can't call method `for_each` on type `{integer}`
+   |
+help: you must surround the range in parentheses to call its `for_each` function
+   |
+28 |     (1..15).for_each(|j| {
+   |     +     +
+
+error[E0689]: can't call method `for_each` on type `usize`
+  --> ylong_runtime/examples/ylong_tokio_schedule.rs:36:12
+   |
+36 |     0..num.for_each(|_| {
+   |            ^^^^^^^^ can't call method `for_each` on type `usize`
+   |
+help: you must surround the range in parentheses to call its `for_each` function
+   |
+36 |     (0..num).for_each(|_| {
+   |     +      +
+
+error[E0599]: `std::vec::Vec<ylong_runtime::task::JoinHandle<()>>` is not an iterator
+  --> ylong_runtime/examples/ylong_tokio_schedule.rs:42:14
+   |
+42 |     handlers.for_each(|handler| {
+   |     ---------^^^^^^^^ `std::vec::Vec<ylong_runtime::task::JoinHandle<()>>` is not an iterator; try calling `.into_iter()` or `.iter()`
+  --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs:396:1
+   |
+   = note: doesn't satisfy `_: Iterator`
+   |
+   = note: the following trait bounds were not satisfied:
+           `std::vec::Vec<ylong_runtime::task::JoinHandle<()>>: std::iter::Iterator`
+           which is required by `&mut std::vec::Vec<ylong_runtime::task::JoinHandle<()>>: std::iter::Iterator`
+           `[ylong_runtime::task::JoinHandle<()>]: std::iter::Iterator`
+           which is required by `&mut [ylong_runtime::task::JoinHandle<()>]: std::iter::Iterator`
+
+error[E0689]: can't call method `for_each` on type `usize`
+  --> ylong_runtime/examples/ylong_tokio_schedule.rs:53:12
+   |
+53 |     0..num.for_each(|_| {
+   |            ^^^^^^^^ can't call method `for_each` on type `usize`
+   |
+help: you must surround the range in parentheses to call its `for_each` function
+   |
+53 |     (0..num).for_each(|_| {
+   |     +      +
+
+error[E0599]: `std::vec::Vec<tokio::task::JoinHandle<()>>` is not an iterator
+  --> ylong_runtime/examples/ylong_tokio_schedule.rs:59:14
+   |
+59 |     handlers.for_each(|handler| {
+   |     ---------^^^^^^^^ `std::vec::Vec<tokio::task::JoinHandle<()>>` is not an iterator; try calling `.into_iter()` or `.iter()`
+  --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs:396:1
+   |
+   = note: doesn't satisfy `_: Iterator`
+   |
+   = note: the following trait bounds were not satisfied:
+           `std::vec::Vec<tokio::task::JoinHandle<()>>: std::iter::Iterator`
+           which is required by `&mut std::vec::Vec<tokio::task::JoinHandle<()>>: std::iter::Iterator`
+           `[tokio::task::JoinHandle<()>]: std::iter::Iterator`
+           which is required by `&mut [tokio::task::JoinHandle<()>]: std::iter::Iterator`
+
+error[E0689]: can't call method `for_each` on type `usize`
+  --> ylong_runtime/examples/ylong_tokio_schedule.rs:66:12
+   |
+66 |     0..num.for_each(|_| {
+   |            ^^^^^^^^ can't call method `for_each` on type `usize`
+   |
+help: you must surround the range in parentheses to call its `for_each` function
+   |
+66 |     (0..num).for_each(|_| {
+   |     +      +
+
+error[E0599]: `std::vec::Vec<ylong_runtime::task::JoinHandle<()>>` is not an iterator
+  --> ylong_runtime/examples/ylong_tokio_schedule.rs:73:14
+   |
+73 |     handlers.for_each(|handler| {
+   |     ---------^^^^^^^^ `std::vec::Vec<ylong_runtime::task::JoinHandle<()>>` is not an iterator; try calling `.into_iter()` or `.iter()`
+  --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs:396:1
+   |
+   = note: doesn't satisfy `_: Iterator`
+   |
+   = note: the following trait bounds were not satisfied:
+           `std::vec::Vec<ylong_runtime::task::JoinHandle<()>>: std::iter::Iterator`
+           which is required by `&mut std::vec::Vec<ylong_runtime::task::JoinHandle<()>>: std::iter::Iterator`
+           `[ylong_runtime::task::JoinHandle<()>]: std::iter::Iterator`
+           which is required by `&mut [ylong_runtime::task::JoinHandle<()>]: std::iter::Iterator`
+
+error[E0689]: can't call method `for_each` on type `usize`
+  --> ylong_runtime/examples/ylong_tokio_schedule.rs:84:12
+   |
+84 |     0..num.for_each(|_| {
+   |            ^^^^^^^^ can't call method `for_each` on type `usize`
+   |
+help: you must surround the range in parentheses to call its `for_each` function
+   |
+84 |     (0..num).for_each(|_| {
+   |     +      +
+
+error[E0599]: `std::vec::Vec<tokio::task::JoinHandle<()>>` is not an iterator
+  --> ylong_runtime/examples/ylong_tokio_schedule.rs:91:14
+   |
+91 |     handlers.for_each(|handler| {
+   |     ---------^^^^^^^^ `std::vec::Vec<tokio::task::JoinHandle<()>>` is not an iterator; try calling `.into_iter()` or `.iter()`
+  --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs:396:1
+   |
+   = note: doesn't satisfy `_: Iterator`
+   |
+   = note: the following trait bounds were not satisfied:
+           `std::vec::Vec<tokio::task::JoinHandle<()>>: std::iter::Iterator`
+           which is required by `&mut std::vec::Vec<tokio::task::JoinHandle<()>>: std::iter::Iterator`
+           `[tokio::task::JoinHandle<()>]: std::iter::Iterator`
+           which is required by `&mut [tokio::task::JoinHandle<()>]: std::iter::Iterator`
+
+error: aborting due to 9 previous errors
+
+Some errors have detailed explanations: E0599, E0689.
+For more information about an error, try `rustc --explain E0599`.
+Original diagnostics will follow.
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/examples/ylong_tokio_schedule.rs:28:5
+   |
+28 | /     for j in 1..15 {
+29 | |         ret += black_box(recur_fibbo(j as u64));
+30 | |     }
+   | |_____^
+   |
+   = note: `#[warn(lint::warn_foreach)]` on by default
+help: try using `for_each` on the iterator
+   |
+28 ~     1..15.for_each(|j| {
+29 +         ret += black_box(recur_fibbo(j as u64));
+30 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/examples/ylong_tokio_schedule.rs:36:5
+   |
+36 | /     for _ in 0..num {
+37 | |         handlers.push(ylong_runtime::spawn(async move {
+38 | |             yield_now().await;
+39 | |         }));
+40 | |     }
+   | |_____^
+   |
+help: try using `for_each` on the iterator
+   |
+36 ~     0..num.for_each(|_| {
+37 +         handlers.push(ylong_runtime::spawn(async move {
+38 +             yield_now().await;
+39 +         }));
+40 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/examples/ylong_tokio_schedule.rs:42:5
+   |
+42 | /     for handler in handlers {
+43 | |         ylong_runtime::block_on(handler).unwrap();
+44 | |     }
+   | |_____^
+   |
+help: try using `for_each` on the iterator
+   |
+42 ~     handlers.for_each(|handler| {
+43 +         ylong_runtime::block_on(handler).unwrap();
+44 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/examples/ylong_tokio_schedule.rs:53:5
+   |
+53 | /     for _ in 0..num {
+54 | |         handlers.push(runtime.spawn(async move {
+55 | |             yield_now().await;
+56 | |         }));
+57 | |     }
+   | |_____^
+   |
+help: try using `for_each` on the iterator
+   |
+53 ~     0..num.for_each(|_| {
+54 +         handlers.push(runtime.spawn(async move {
+55 +             yield_now().await;
+56 +         }));
+57 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/examples/ylong_tokio_schedule.rs:59:5
+   |
+59 | /     for handler in handlers {
+60 | |         runtime.block_on(handler).unwrap();
+61 | |     }
+   | |_____^
+   |
+help: try using `for_each` on the iterator
+   |
+59 ~     handlers.for_each(|handler| {
+60 +         runtime.block_on(handler).unwrap();
+61 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/examples/ylong_tokio_schedule.rs:66:5
+   |
+66 | /     for _ in 0..num {
+67 | |         handlers.push(ylong_runtime::spawn(async move {
+68 | |             fibbo();
+69 | |             yield_now().await;
+70 | |         }));
+71 | |     }
+   | |_____^
+   |
+help: try using `for_each` on the iterator
+   |
+66 ~     0..num.for_each(|_| {
+67 +         handlers.push(ylong_runtime::spawn(async move {
+68 +             fibbo();
+69 +             yield_now().await;
+70 +         }));
+71 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/examples/ylong_tokio_schedule.rs:73:5
+   |
+73 | /     for handler in handlers {
+74 | |         ylong_runtime::block_on(handler).unwrap();
+75 | |     }
+   | |_____^
+   |
+help: try using `for_each` on the iterator
+   |
+73 ~     handlers.for_each(|handler| {
+74 +         ylong_runtime::block_on(handler).unwrap();
+75 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/examples/ylong_tokio_schedule.rs:84:5
+   |
+84 | /     for _ in 0..num {
+85 | |         handlers.push(runtime.spawn(async move {
+86 | |             fibbo();
+87 | |             yield_now().await;
+88 | |         }));
+89 | |     }
+   | |_____^
+   |
+help: try using `for_each` on the iterator
+   |
+84 ~     0..num.for_each(|_| {
+85 +         handlers.push(runtime.spawn(async move {
+86 +             fibbo();
+87 +             yield_now().await;
+88 +         }));
+89 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/examples/ylong_tokio_schedule.rs:91:5
+   |
+91 | /     for handler in handlers {
+92 | |         runtime.block_on(handler).unwrap();
+93 | |     }
+   | |_____^
+   |
+help: try using `for_each` on the iterator
+   |
+91 ~     handlers.for_each(|handler| {
+92 +         runtime.block_on(handler).unwrap();
+93 +     });
+   |
+
+warning: `ylong_runtime` (example "ylong_tokio_schedule") generated 9 warnings (run `cargo fix --example "ylong_tokio_schedule"` to apply 9 suggestions)
+warning: failed to automatically apply fixes suggested by rustc to crate `sync_benchmarks`
+
+after fixes were automatically applied the compiler reported errors within these files:
+
+  * ylong_runtime/benches/sync_benchmarks.rs
+  * ylong_runtime/benches/task_helpers/mod.rs
+
+This likely indicates a bug in either rustc or cargo itself,
+and we would appreciate a bug report! You're likely to see 
+a number of compiler warnings after this message which cargo
+attempted to fix but failed. If you could open an issue at
+https://github.com/rust-lang/rust/issues
+quoting the full output of this command we'd be very appreciative!
+Note that you may be able to make some more progress in the near-term
+fixing code with the `--broken-code` flag
+
+The following errors were reported:
+error[E0689]: can't call method `for_each` on type `usize`
+  --> ylong_runtime/benches/task_helpers/mod.rs:80:14
+   |
+80 |     1..upper.for_each(|j| {
+   |              ^^^^^^^^ can't call method `for_each` on type `usize`
+   |
+help: you must surround the range in parentheses to call its `for_each` function
+   |
+80 |     (1..upper).for_each(|j| {
+   |     +        +
+
+error[E0689]: can't call method `for_each` on type `usize`
+  --> ylong_runtime/benches/sync_benchmarks.rs:38:25
+   |
+38 |             0..TASK_NUM.for_each(|_| {
+   |                         ^^^^^^^^ can't call method `for_each` on type `usize`
+   |
+help: you must surround the range in parentheses to call its `for_each` function
+   |
+38 |             (0..TASK_NUM).for_each(|_| {
+   |             +           +
+
+error[E0689]: can't call method `for_each` on type `usize`
+  --> ylong_runtime/benches/sync_benchmarks.rs:60:25
+   |
+60 |             0..TASK_NUM.for_each(|_i| {
+   |                         ^^^^^^^^ can't call method `for_each` on type `usize`
+   |
+help: you must surround the range in parentheses to call its `for_each` function
+   |
+60 |             (0..TASK_NUM).for_each(|_i| {
+   |             +           +
+
+error[E0689]: can't call method `for_each` on type `usize`
+  --> ylong_runtime/benches/sync_benchmarks.rs:91:25
+   |
+91 |             0..TASK_NUM.for_each(|_i| {
+   |                         ^^^^^^^^ can't call method `for_each` on type `usize`
+   |
+help: you must surround the range in parentheses to call its `for_each` function
+   |
+91 |             (0..TASK_NUM).for_each(|_i| {
+   |             +           +
+
+error[E0689]: can't call method `for_each` on type `usize`
+   --> ylong_runtime/benches/sync_benchmarks.rs:106:29
+    |
+106 |                 0..TASK_NUM.for_each(|_| {
+    |                             ^^^^^^^^ can't call method `for_each` on type `usize`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+106 |                 (0..TASK_NUM).for_each(|_| {
+    |                 +           +
+
+error[E0689]: can't call method `for_each` on type `usize`
+   --> ylong_runtime/benches/sync_benchmarks.rs:111:25
+    |
+111 |             0..TASK_NUM.for_each(|_| {
+    |                         ^^^^^^^^ can't call method `for_each` on type `usize`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+111 |             (0..TASK_NUM).for_each(|_| {
+    |             +           +
+
+error[E0689]: can't call method `for_each` on type `usize`
+   --> ylong_runtime/benches/sync_benchmarks.rs:124:29
+    |
+124 |                 0..TASK_NUM.for_each(|_| {
+    |                             ^^^^^^^^ can't call method `for_each` on type `usize`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+124 |                 (0..TASK_NUM).for_each(|_| {
+    |                 +           +
+
+error[E0689]: can't call method `for_each` on type `usize`
+   --> ylong_runtime/benches/sync_benchmarks.rs:140:25
+    |
+140 |             0..TASK_NUM.for_each(|_| {
+    |                         ^^^^^^^^ can't call method `for_each` on type `usize`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+140 |             (0..TASK_NUM).for_each(|_| {
+    |             +           +
+
+error: aborting due to 8 previous errors
+
+For more information about this error, try `rustc --explain E0689`.
+Original diagnostics will follow.
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/benches/task_helpers/mod.rs:80:5
+   |
+80 | /     for j in 1..upper {
+81 | |         ret += black_box(recur_fibbo(j as u64));
+82 | |     }
+   | |_____^
+   |
+   = note: `#[warn(lint::warn_foreach)]` on by default
+help: try using `for_each` on the iterator
+   |
+80 ~     1..upper.for_each(|j| {
+81 +         ret += black_box(recur_fibbo(j as u64));
+82 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/benches/task_helpers/mod.rs:88:5
+   |
+88 | /     for (i, tar) in buffer.iter_mut().enumerate().take(BUFFER_SIZE) {
+89 | |         *tar = (i % 256) as u8;
+90 | |     }
+   | |_____^
+   |
+help: try using `for_each` on the iterator
+   |
+88 ~     buffer.iter_mut().enumerate().take(BUFFER_SIZE).for_each(|(i, tar)| {
+89 +         *tar = (i % 256) as u8;
+90 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/benches/sync_benchmarks.rs:38:13
+   |
+38 | /             for _ in 0..TASK_NUM {
+39 | |                 let ret = black_box(fibbo(30));
+40 | |                 assert_eq!(ret, FIBBO_ANS);
+41 | |             }
+   | |_____________^
+   |
+help: try using `for_each` on the iterator
+   |
+38 ~             0..TASK_NUM.for_each(|_| {
+39 +                 let ret = black_box(fibbo(30));
+40 +                 assert_eq!(ret, FIBBO_ANS);
+41 +             });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/benches/sync_benchmarks.rs:60:13
+   |
+60 | /             for _i in 0..TASK_NUM {
+61 | |                 unsafe {
+62 | |                     file.read_exact(&mut READ_BUFFER).unwrap();
+63 | |                 }
+64 | |             }
+   | |_____________^
+   |
+help: try using `for_each` on the iterator
+   |
+60 ~             0..TASK_NUM.for_each(|_i| {
+61 +                 unsafe {
+62 +                     file.read_exact(&mut READ_BUFFER).unwrap();
+63 +                 }
+64 +             });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/benches/sync_benchmarks.rs:76:17
+   |
+76 | /                 for tar in READ_BUFFER.iter_mut().take(TASK_NUM) {
+77 | |                     file.read_exact(&mut buffer).unwrap();
+78 | |                     *tar = buffer[0];
+79 | |                 }
+   | |_________________^
+   |
+help: try using `for_each` on the iterator
+   |
+76 ~                 READ_BUFFER.iter_mut().take(TASK_NUM).for_each(|tar| {
+77 +                     file.read_exact(&mut buffer).unwrap();
+78 +                     *tar = buffer[0];
+79 +                 });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/benches/sync_benchmarks.rs:91:13
+   |
+91 | /             for _i in 0..TASK_NUM {
+92 | |                 unsafe {
+93 | |                     let _ = file.write(&WRITE_BUFFER).unwrap();
+94 | |                 }
+95 | |             }
+   | |_____________^
+   |
+help: try using `for_each` on the iterator
+   |
+91 ~             0..TASK_NUM.for_each(|_i| {
+92 +                 unsafe {
+93 +                     let _ = file.write(&WRITE_BUFFER).unwrap();
+94 +                 }
+95 +             });
+   |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/benches/sync_benchmarks.rs:106:17
+    |
+106 | /                 for _ in 0..TASK_NUM {
+107 | |                     sender.send(()).unwrap();
+108 | |                 }
+    | |_________________^
+    |
+help: try using `for_each` on the iterator
+    |
+106 ~                 0..TASK_NUM.for_each(|_| {
+107 +                     sender.send(()).unwrap();
+108 +                 });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/benches/sync_benchmarks.rs:111:13
+    |
+111 | /             for _ in 0..TASK_NUM {
+112 | |                 recv.recv().unwrap();
+113 | |             }
+    | |_____________^
+    |
+help: try using `for_each` on the iterator
+    |
+111 ~             0..TASK_NUM.for_each(|_| {
+112 +                 recv.recv().unwrap();
+113 +             });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/benches/sync_benchmarks.rs:124:17
+    |
+124 | /                 for _ in 0..TASK_NUM {
+125 | |                     let (send1, recv1) = mpsc::sync_channel(TASK_NUM);
+126 | |                     let (send2, recv2) = mpsc::sync_channel(TASK_NUM);
+127 | |
+...   |
+136 | |                     done_send.send(()).unwrap();
+137 | |                 }
+    | |_________________^
+    |
+help: try using `for_each` on the iterator
+    |
+124 ~                 0..TASK_NUM.for_each(|_| {
+125 +                     let (send1, recv1) = mpsc::sync_channel(TASK_NUM);
+126 +                     let (send2, recv2) = mpsc::sync_channel(TASK_NUM);
+127 + 
+128 +                     std::thread::spawn(move || {
+129 +                         recv1.recv().unwrap();
+130 +                         send2.send(()).unwrap();
+131 +                     });
+132 + 
+133 +                     send1.send(()).unwrap();
+134 +                     recv2.recv().unwrap();
+135 + 
+136 +                     done_send.send(()).unwrap();
+137 +                 });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/benches/sync_benchmarks.rs:140:13
+    |
+140 | /             for _ in 0..TASK_NUM {
+141 | |                 recv.recv().unwrap();
+142 | |             }
+    | |_____________^
+    |
+help: try using `for_each` on the iterator
+    |
+140 ~             0..TASK_NUM.for_each(|_| {
+141 +                 recv.recv().unwrap();
+142 +             });
+    |
+
+warning: `ylong_runtime` (bench "sync_benchmarks") generated 10 warnings (run `cargo fix --bench "sync_benchmarks"` to apply 10 suggestions)
+warning: failed to automatically apply fixes suggested by rustc to crate `join_set`
+
+after fixes were automatically applied the compiler reported errors within these files:
+
+  * ylong_runtime/tests/join_set.rs
+
+This likely indicates a bug in either rustc or cargo itself,
+and we would appreciate a bug report! You're likely to see 
+a number of compiler warnings after this message which cargo
+attempted to fix but failed. If you could open an issue at
+https://github.com/rust-lang/rust/issues
+quoting the full output of this command we'd be very appreciative!
+Note that you may be able to make some more progress in the near-term
+fixing code with the `--broken-code` flag
+
+The following errors were reported:
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/tests/join_set.rs:164:9
+    |
+164 | /         for _ in 0..100 {
+165 | |             let tmp = value.clone();
+166 | |             set.spawn(async move {
+167 | |                 0..10.for_each(|_| {
+...   |
+171 | |             });
+172 | |         }
+    | |_________^
+    |
+    = note: `#[warn(lint::warn_foreach)]` on by default
+help: try using `for_each` on the iterator
+    |
+164 ~         0..100.for_each(|_| {
+165 +             let tmp = value.clone();
+166 +             set.spawn(async move {
+167 +                 0..10.for_each(|_| {
+168 +                     tmp.fetch_add(1, Relaxed);
+169 +                 });
+170 +                 0
+171 +             });
+172 +         });
+    |
+
+error[E0728]: `await` is only allowed inside `async` functions and blocks
+   --> ylong_runtime/tests/join_set.rs:143:39
+    |
+142 |         0..100.for_each(|_| {
+    |                         --- this is not `async`
+143 |             let ret = set.join_next().await.unwrap().unwrap();
+    |                                       ^^^^^ only allowed inside `async` functions and blocks
+
+error[E0728]: `await` is only allowed inside `async` functions and blocks
+   --> ylong_runtime/tests/join_set.rs:253:39
+    |
+252 |         0..10.for_each(|_| {
+    |                        --- this is not `async`
+253 |             let ret = set.join_next().await.unwrap().unwrap();
+    |                                       ^^^^^ only allowed inside `async` functions and blocks
+
+error[E0689]: can't call method `for_each` on type `{integer}`
+   --> ylong_runtime/tests/join_set.rs:139:16
+    |
+139 |         0..100.for_each(|_| {
+    |                ^^^^^^^^ can't call method `for_each` on type `{integer}`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+139 |         (0..100).for_each(|_| {
+    |         +      +
+
+error[E0689]: can't call method `for_each` on type `{integer}`
+   --> ylong_runtime/tests/join_set.rs:142:16
+    |
+142 |         0..100.for_each(|_| {
+    |                ^^^^^^^^ can't call method `for_each` on type `{integer}`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+142 |         (0..100).for_each(|_| {
+    |         +      +
+
+error[E0689]: can't call method `for_each` on type `{integer}`
+   --> ylong_runtime/tests/join_set.rs:167:23
+    |
+167 |                 0..10.for_each(|_| {
+    |                       ^^^^^^^^ can't call method `for_each` on type `{integer}`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+167 |                 (0..10).for_each(|_| {
+    |                 +     +
+
+error[E0689]: can't call method `for_each` on type `{integer}`
+   --> ylong_runtime/tests/join_set.rs:249:15
+    |
+249 |         0..10.for_each(|_| {
+    |               ^^^^^^^^ can't call method `for_each` on type `{integer}`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+249 |         (0..10).for_each(|_| {
+    |         +     +
+
+error[E0689]: can't call method `for_each` on type `{integer}`
+   --> ylong_runtime/tests/join_set.rs:252:15
+    |
+252 |         0..10.for_each(|_| {
+    |               ^^^^^^^^ can't call method `for_each` on type `{integer}`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+252 |         (0..10).for_each(|_| {
+    |         +     +
+
+error: aborting due to 7 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0689, E0728.
+For more information about an error, try `rustc --explain E0689`.
+Original diagnostics will follow.
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/tests/join_set.rs:139:9
+    |
+139 | /         for _ in 0..100 {
+140 | |             set.spawn(TestFuture::default());
+141 | |         }
+    | |_________^
+    |
+    = note: `#[warn(lint::warn_foreach)]` on by default
+help: try using `for_each` on the iterator
+    |
+139 ~         0..100.for_each(|_| {
+140 +             set.spawn(TestFuture::default());
+141 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/tests/join_set.rs:142:9
+    |
+142 | /         for _ in 0..100 {
+143 | |             let ret = set.join_next().await.unwrap().unwrap();
+144 | |             assert_eq!(ret, 1);
+145 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+142 ~         0..100.for_each(|_| {
+143 +             let ret = set.join_next().await.unwrap().unwrap();
+144 +             assert_eq!(ret, 1);
+145 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/tests/join_set.rs:164:9
+    |
+164 | /         for _ in 0..100 {
+165 | |             let tmp = value.clone();
+166 | |             set.spawn(async move {
+167 | |                 for _ in 0..10 {
+...   |
+171 | |             });
+172 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+164 ~         0..100.for_each(|_| {
+165 +             let tmp = value.clone();
+166 +             set.spawn(async move {
+167 +                 for _ in 0..10 {
+168 +                     tmp.fetch_add(1, Relaxed);
+169 +                 }
+170 +                 0
+171 +             });
+172 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/tests/join_set.rs:167:17
+    |
+167 | /                 for _ in 0..10 {
+168 | |                     tmp.fetch_add(1, Relaxed);
+169 | |                 }
+    | |_________________^
+    |
+help: try using `for_each` on the iterator
+    |
+167 ~                 0..10.for_each(|_| {
+168 +                     tmp.fetch_add(1, Relaxed);
+169 +                 });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/tests/join_set.rs:249:9
+    |
+249 | /         for _ in 0..10 {
+250 | |             let _ = builder.spawn(async move { 1 });
+251 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+249 ~         0..10.for_each(|_| {
+250 +             let _ = builder.spawn(async move { 1 });
+251 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/tests/join_set.rs:252:9
+    |
+252 | /         for _ in 0..10 {
+253 | |             let ret = set.join_next().await.unwrap().unwrap();
+254 | |             assert_eq!(ret, 1);
+255 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+252 ~         0..10.for_each(|_| {
+253 +             let ret = set.join_next().await.unwrap().unwrap();
+254 +             assert_eq!(ret, 1);
+255 +         });
+    |
+
+warning: `ylong_runtime` (test "join_set") generated 6 warnings (run `cargo fix --test "join_set"` to apply 6 suggestions)
+warning: failed to automatically apply fixes suggested by rustc to crate `spawn`
+
+after fixes were automatically applied the compiler reported errors within these files:
+
+  * ylong_runtime/tests/spawn.rs
+
+This likely indicates a bug in either rustc or cargo itself,
+and we would appreciate a bug report! You're likely to see 
+a number of compiler warnings after this message which cargo
+attempted to fix but failed. If you could open an issue at
+https://github.com/rust-lang/rust/issues
+quoting the full output of this command we'd be very appreciative!
+Note that you may be able to make some more progress in the near-term
+fixing code with the `--broken-code` flag
+
+The following errors were reported:
+error[E0689]: can't call method `for_each` on type `usize`
+  --> ylong_runtime/tests/spawn.rs:35:12
+   |
+35 |     0..num.for_each(|i| {
+   |            ^^^^^^^^ can't call method `for_each` on type `usize`
+   |
+help: you must surround the range in parentheses to call its `for_each` function
+   |
+35 |     (0..num).for_each(|i| {
+   |     +      +
+
+error[E0689]: can't call method `for_each` on type `usize`
+  --> ylong_runtime/tests/spawn.rs:52:12
+   |
+52 |     0..num.for_each(|i| {
+   |            ^^^^^^^^ can't call method `for_each` on type `usize`
+   |
+help: you must surround the range in parentheses to call its `for_each` function
+   |
+52 |     (0..num).for_each(|i| {
+   |     +      +
+
+error[E0689]: can't call method `for_each` on type `usize`
+  --> ylong_runtime/tests/spawn.rs:69:12
+   |
+69 |     0..num.for_each(|i| {
+   |            ^^^^^^^^ can't call method `for_each` on type `usize`
+   |
+help: you must surround the range in parentheses to call its `for_each` function
+   |
+69 |     (0..num).for_each(|i| {
+   |     +      +
+
+error[E0689]: can't call method `for_each` on type `usize`
+  --> ylong_runtime/tests/spawn.rs:86:12
+   |
+86 |     0..num.for_each(|i| {
+   |            ^^^^^^^^ can't call method `for_each` on type `usize`
+   |
+help: you must surround the range in parentheses to call its `for_each` function
+   |
+86 |     (0..num).for_each(|i| {
+   |     +      +
+
+error[E0689]: can't call method `for_each` on type `usize`
+   --> ylong_runtime/tests/spawn.rs:103:12
+    |
+103 |     0..num.for_each(|i| {
+    |            ^^^^^^^^ can't call method `for_each` on type `usize`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+103 |     (0..num).for_each(|i| {
+    |     +      +
+
+error[E0689]: can't call method `for_each` on type `usize`
+   --> ylong_runtime/tests/spawn.rs:120:12
+    |
+120 |     0..num.for_each(|i| {
+    |            ^^^^^^^^ can't call method `for_each` on type `usize`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+120 |     (0..num).for_each(|i| {
+    |     +      +
+
+error[E0689]: can't call method `for_each` on type `usize`
+   --> ylong_runtime/tests/spawn.rs:137:12
+    |
+137 |     0..num.for_each(|i| {
+    |            ^^^^^^^^ can't call method `for_each` on type `usize`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+137 |     (0..num).for_each(|i| {
+    |     +      +
+
+error[E0689]: can't call method `for_each` on type `usize`
+   --> ylong_runtime/tests/spawn.rs:155:12
+    |
+155 |     0..num.for_each(|i| {
+    |            ^^^^^^^^ can't call method `for_each` on type `usize`
+    |
+help: you must surround the range in parentheses to call its `for_each` function
+    |
+155 |     (0..num).for_each(|i| {
+    |     +      +
+
+error: aborting due to 8 previous errors
+
+For more information about this error, try `rustc --explain E0689`.
+Original diagnostics will follow.
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/tests/spawn.rs:35:5
+   |
+35 | /     for i in 0..num {
+36 | |         handles.push(ylong_runtime::spawn(test_future(i)));
+37 | |     }
+   | |_____^
+   |
+   = note: `#[warn(lint::warn_foreach)]` on by default
+help: try using `for_each` on the iterator
+   |
+35 ~     0..num.for_each(|i| {
+36 +         handles.push(ylong_runtime::spawn(test_future(i)));
+37 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/tests/spawn.rs:39:5
+   |
+39 | /     for (times, handle) in handles.into_iter().enumerate() {
+40 | |         let ret = ylong_runtime::block_on(handle);
+41 | |         assert_eq!(ret.unwrap(), times);
+42 | |     }
+   | |_____^
+   |
+help: try using `for_each` on the iterator
+   |
+39 ~     handles.into_iter().enumerate().for_each(|(times, handle)| {
+40 +         let ret = ylong_runtime::block_on(handle);
+41 +         assert_eq!(ret.unwrap(), times);
+42 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/tests/spawn.rs:52:5
+   |
+52 | /     for i in 0..num {
+53 | |         handles.push(ylong_runtime::spawn(test_future(i)));
+54 | |     }
+   | |_____^
+   |
+help: try using `for_each` on the iterator
+   |
+52 ~     0..num.for_each(|i| {
+53 +         handles.push(ylong_runtime::spawn(test_future(i)));
+54 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/tests/spawn.rs:56:5
+   |
+56 | /     for (times, handle) in handles.into_iter().enumerate() {
+57 | |         let ret = ylong_runtime::block_on(handle);
+58 | |         assert_eq!(ret.unwrap(), times);
+59 | |     }
+   | |_____^
+   |
+help: try using `for_each` on the iterator
+   |
+56 ~     handles.into_iter().enumerate().for_each(|(times, handle)| {
+57 +         let ret = ylong_runtime::block_on(handle);
+58 +         assert_eq!(ret.unwrap(), times);
+59 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/tests/spawn.rs:69:5
+   |
+69 | /     for i in 0..num {
+70 | |         handles.push(ylong_runtime::spawn(test_future(i)));
+71 | |     }
+   | |_____^
+   |
+help: try using `for_each` on the iterator
+   |
+69 ~     0..num.for_each(|i| {
+70 +         handles.push(ylong_runtime::spawn(test_future(i)));
+71 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/tests/spawn.rs:73:5
+   |
+73 | /     for (times, handle) in handles.into_iter().enumerate() {
+74 | |         let ret = ylong_runtime::block_on(handle);
+75 | |         assert_eq!(ret.unwrap(), times);
+76 | |     }
+   | |_____^
+   |
+help: try using `for_each` on the iterator
+   |
+73 ~     handles.into_iter().enumerate().for_each(|(times, handle)| {
+74 +         let ret = ylong_runtime::block_on(handle);
+75 +         assert_eq!(ret.unwrap(), times);
+76 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/tests/spawn.rs:86:5
+   |
+86 | /     for i in 0..num {
+87 | |         handles.push(ylong_runtime::spawn(test_future(i)));
+88 | |     }
+   | |_____^
+   |
+help: try using `for_each` on the iterator
+   |
+86 ~     0..num.for_each(|i| {
+87 +         handles.push(ylong_runtime::spawn(test_future(i)));
+88 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/tests/spawn.rs:90:5
+   |
+90 | /     for (times, handle) in handles.into_iter().enumerate() {
+91 | |         let ret = ylong_runtime::block_on(handle);
+92 | |         assert_eq!(ret.unwrap(), times);
+93 | |     }
+   | |_____^
+   |
+help: try using `for_each` on the iterator
+   |
+90 ~     handles.into_iter().enumerate().for_each(|(times, handle)| {
+91 +         let ret = ylong_runtime::block_on(handle);
+92 +         assert_eq!(ret.unwrap(), times);
+93 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/tests/spawn.rs:103:5
+    |
+103 | /     for i in 0..num {
+104 | |         handles.push(ylong_runtime::spawn(test_future(i)));
+105 | |     }
+    | |_____^
+    |
+help: try using `for_each` on the iterator
+    |
+103 ~     0..num.for_each(|i| {
+104 +         handles.push(ylong_runtime::spawn(test_future(i)));
+105 +     });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/tests/spawn.rs:107:5
+    |
+107 | /     for (times, handle) in handles.into_iter().enumerate() {
+108 | |         let ret = ylong_runtime::block_on(handle);
+109 | |         assert_eq!(ret.unwrap(), times);
+110 | |     }
+    | |_____^
+    |
+help: try using `for_each` on the iterator
+    |
+107 ~     handles.into_iter().enumerate().for_each(|(times, handle)| {
+108 +         let ret = ylong_runtime::block_on(handle);
+109 +         assert_eq!(ret.unwrap(), times);
+110 +     });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/tests/spawn.rs:120:5
+    |
+120 | /     for i in 0..num {
+121 | |         handles.push(ylong_runtime::spawn(test_future(i)));
+122 | |     }
+    | |_____^
+    |
+help: try using `for_each` on the iterator
+    |
+120 ~     0..num.for_each(|i| {
+121 +         handles.push(ylong_runtime::spawn(test_future(i)));
+122 +     });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/tests/spawn.rs:124:5
+    |
+124 | /     for (times, handle) in handles.into_iter().enumerate() {
+125 | |         let ret = ylong_runtime::block_on(handle);
+126 | |         assert_eq!(ret.unwrap(), times);
+127 | |     }
+    | |_____^
+    |
+help: try using `for_each` on the iterator
+    |
+124 ~     handles.into_iter().enumerate().for_each(|(times, handle)| {
+125 +         let ret = ylong_runtime::block_on(handle);
+126 +         assert_eq!(ret.unwrap(), times);
+127 +     });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/tests/spawn.rs:137:5
+    |
+137 | /     for i in 0..num {
+138 | |         handles.push(ylong_runtime::spawn(test_multi_future_in_async(i, i + 1)));
+139 | |     }
+    | |_____^
+    |
+help: try using `for_each` on the iterator
+    |
+137 ~     0..num.for_each(|i| {
+138 +         handles.push(ylong_runtime::spawn(test_multi_future_in_async(i, i + 1)));
+139 +     });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/tests/spawn.rs:141:5
+    |
+141 | /     for (times, handle) in handles.into_iter().enumerate() {
+142 | |         let ret = ylong_runtime::block_on(handle);
+143 | |         assert_eq!(ret.unwrap(), (times, times + 1));
+144 | |     }
+    | |_____^
+    |
+help: try using `for_each` on the iterator
+    |
+141 ~     handles.into_iter().enumerate().for_each(|(times, handle)| {
+142 +         let ret = ylong_runtime::block_on(handle);
+143 +         assert_eq!(ret.unwrap(), (times, times + 1));
+144 +     });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/tests/spawn.rs:155:5
+    |
+155 | /     for i in 0..num {
+156 | |         handles.push(ylong_runtime::spawn(test_async_in_async(i, i + 1)));
+157 | |     }
+    | |_____^
+    |
+help: try using `for_each` on the iterator
+    |
+155 ~     0..num.for_each(|i| {
+156 +         handles.push(ylong_runtime::spawn(test_async_in_async(i, i + 1)));
+157 +     });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> ylong_runtime/tests/spawn.rs:159:5
+    |
+159 | /     for (times, handle) in handles.into_iter().enumerate() {
+160 | |         let ret = ylong_runtime::block_on(handle);
+161 | |         assert_eq!(ret.unwrap(), (times, times + 1));
+162 | |     }
+    | |_____^
+    |
+help: try using `for_each` on the iterator
+    |
+159 ~     handles.into_iter().enumerate().for_each(|(times, handle)| {
+160 +         let ret = ylong_runtime::block_on(handle);
+161 +         assert_eq!(ret.unwrap(), (times, times + 1));
+162 +     });
+    |
+
+warning: `ylong_runtime` (test "spawn") generated 16 warnings (run `cargo fix --test "spawn"` to apply 16 suggestions)
+warning: failed to automatically apply fixes suggested by rustc to crate `ylong_tokio_schedule`
+
+after fixes were automatically applied the compiler reported errors within these files:
+
+  * /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs
+  * ylong_runtime/benches/task_helpers/mod.rs
+  * ylong_runtime/benches/ylong_tokio_schedule.rs
+
+This likely indicates a bug in either rustc or cargo itself,
+and we would appreciate a bug report! You're likely to see 
+a number of compiler warnings after this message which cargo
+attempted to fix but failed. If you could open an issue at
+https://github.com/rust-lang/rust/issues
+quoting the full output of this command we'd be very appreciative!
+Note that you may be able to make some more progress in the near-term
+fixing code with the `--broken-code` flag
+
+The following errors were reported:
+error[E0689]: can't call method `for_each` on type `usize`
+  --> ylong_runtime/benches/task_helpers/mod.rs:80:14
+   |
+80 |     1..upper.for_each(|j| {
+   |              ^^^^^^^^ can't call method `for_each` on type `usize`
+   |
+help: you must surround the range in parentheses to call its `for_each` function
+   |
+80 |     (1..upper).for_each(|j| {
+   |     +        +
+
+error[E0689]: can't call method `for_each` on ambiguous numeric type `{integer}`
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:28:19
+   |
+28 |                 0.for_each(|_| {
+   |                   ^^^^^^^^
+...
+76 |     tokio_schedule_task!(tokio_runtime(), tokio_task_10_15, 10, 15);
+   |     --------------------------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `tokio_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you must specify a concrete type for this numeric value, like `i32`
+   |
+28 |                 0_i32.for_each(|_| {
+   |                 ~~~~~
+
+error[E0599]: `std::vec::Vec<tokio::task::JoinHandle<()>>` is not an iterator
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:35:26
+   |
+35 |                 handlers.for_each(|handler| {
+   |                 ---------^^^^^^^^ `std::vec::Vec<tokio::task::JoinHandle<()>>` is not an iterator; try calling `.into_iter()` or `.iter()`
+...
+76 |     tokio_schedule_task!(tokio_runtime(), tokio_task_10_15, 10, 15);
+   |     --------------------------------------------------------------- in this macro invocation
+  --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs:396:1
+   |
+   = note: doesn't satisfy `_: Iterator`
+   |
+   = note: the following trait bounds were not satisfied:
+           `std::vec::Vec<tokio::task::JoinHandle<()>>: std::iter::Iterator`
+           which is required by `&mut std::vec::Vec<tokio::task::JoinHandle<()>>: std::iter::Iterator`
+           `[tokio::task::JoinHandle<()>]: std::iter::Iterator`
+           which is required by `&mut [tokio::task::JoinHandle<()>]: std::iter::Iterator`
+   = note: this error originates in the macro `tokio_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0689]: can't call method `for_each` on ambiguous numeric type `{integer}`
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:28:19
+   |
+28 |                 0.for_each(|_| {
+   |                   ^^^^^^^^
+...
+77 |     tokio_schedule_task!(tokio_runtime(), tokio_task_120_15, 120, 15);
+   |     ----------------------------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `tokio_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you must specify a concrete type for this numeric value, like `i32`
+   |
+28 |                 0_i32.for_each(|_| {
+   |                 ~~~~~
+
+error[E0599]: `std::vec::Vec<tokio::task::JoinHandle<()>>` is not an iterator
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:35:26
+   |
+35 |                 handlers.for_each(|handler| {
+   |                 ---------^^^^^^^^ `std::vec::Vec<tokio::task::JoinHandle<()>>` is not an iterator; try calling `.into_iter()` or `.iter()`
+...
+77 |     tokio_schedule_task!(tokio_runtime(), tokio_task_120_15, 120, 15);
+   |     ----------------------------------------------------------------- in this macro invocation
+  --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs:396:1
+   |
+   = note: doesn't satisfy `_: Iterator`
+   |
+   = note: the following trait bounds were not satisfied:
+           `std::vec::Vec<tokio::task::JoinHandle<()>>: std::iter::Iterator`
+           which is required by `&mut std::vec::Vec<tokio::task::JoinHandle<()>>: std::iter::Iterator`
+           `[tokio::task::JoinHandle<()>]: std::iter::Iterator`
+           which is required by `&mut [tokio::task::JoinHandle<()>]: std::iter::Iterator`
+   = note: this error originates in the macro `tokio_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0689]: can't call method `for_each` on ambiguous numeric type `{integer}`
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:28:19
+   |
+28 |                 0.for_each(|_| {
+   |                   ^^^^^^^^
+...
+78 |     tokio_schedule_task!(tokio_runtime(), tokio_task_10_30, 10, 30);
+   |     --------------------------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `tokio_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you must specify a concrete type for this numeric value, like `i32`
+   |
+28 |                 0_i32.for_each(|_| {
+   |                 ~~~~~
+
+error[E0599]: `std::vec::Vec<tokio::task::JoinHandle<()>>` is not an iterator
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:35:26
+   |
+35 |                 handlers.for_each(|handler| {
+   |                 ---------^^^^^^^^ `std::vec::Vec<tokio::task::JoinHandle<()>>` is not an iterator; try calling `.into_iter()` or `.iter()`
+...
+78 |     tokio_schedule_task!(tokio_runtime(), tokio_task_10_30, 10, 30);
+   |     --------------------------------------------------------------- in this macro invocation
+  --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs:396:1
+   |
+   = note: doesn't satisfy `_: Iterator`
+   |
+   = note: the following trait bounds were not satisfied:
+           `std::vec::Vec<tokio::task::JoinHandle<()>>: std::iter::Iterator`
+           which is required by `&mut std::vec::Vec<tokio::task::JoinHandle<()>>: std::iter::Iterator`
+           `[tokio::task::JoinHandle<()>]: std::iter::Iterator`
+           which is required by `&mut [tokio::task::JoinHandle<()>]: std::iter::Iterator`
+   = note: this error originates in the macro `tokio_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0689]: can't call method `for_each` on ambiguous numeric type `{integer}`
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:28:19
+   |
+28 |                 0.for_each(|_| {
+   |                   ^^^^^^^^
+...
+79 |     tokio_schedule_task!(tokio_runtime(), tokio_task_120_30, 120, 30);
+   |     ----------------------------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `tokio_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you must specify a concrete type for this numeric value, like `i32`
+   |
+28 |                 0_i32.for_each(|_| {
+   |                 ~~~~~
+
+error[E0599]: `std::vec::Vec<tokio::task::JoinHandle<()>>` is not an iterator
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:35:26
+   |
+35 |                 handlers.for_each(|handler| {
+   |                 ---------^^^^^^^^ `std::vec::Vec<tokio::task::JoinHandle<()>>` is not an iterator; try calling `.into_iter()` or `.iter()`
+...
+79 |     tokio_schedule_task!(tokio_runtime(), tokio_task_120_30, 120, 30);
+   |     ----------------------------------------------------------------- in this macro invocation
+  --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs:396:1
+   |
+   = note: doesn't satisfy `_: Iterator`
+   |
+   = note: the following trait bounds were not satisfied:
+           `std::vec::Vec<tokio::task::JoinHandle<()>>: std::iter::Iterator`
+           which is required by `&mut std::vec::Vec<tokio::task::JoinHandle<()>>: std::iter::Iterator`
+           `[tokio::task::JoinHandle<()>]: std::iter::Iterator`
+           which is required by `&mut [tokio::task::JoinHandle<()>]: std::iter::Iterator`
+   = note: this error originates in the macro `tokio_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0689]: can't call method `for_each` on ambiguous numeric type `{integer}`
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:50:19
+   |
+50 |                 0.for_each(|_| {
+   |                   ^^^^^^^^
+...
+93 |     ylong_schedule_task!(ylong_task_10_15, 10, 15);
+   |     ---------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `ylong_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you must specify a concrete type for this numeric value, like `i32`
+   |
+50 |                 0_i32.for_each(|_| {
+   |                 ~~~~~
+
+error[E0599]: `std::vec::Vec<ylong_runtime::task::JoinHandle<()>>` is not an iterator
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:57:26
+   |
+57 |                 handlers.for_each(|handler| {
+   |                 ---------^^^^^^^^ `std::vec::Vec<ylong_runtime::task::JoinHandle<()>>` is not an iterator; try calling `.into_iter()` or `.iter()`
+...
+93 |     ylong_schedule_task!(ylong_task_10_15, 10, 15);
+   |     ---------------------------------------------- in this macro invocation
+  --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs:396:1
+   |
+   = note: doesn't satisfy `_: Iterator`
+   |
+   = note: the following trait bounds were not satisfied:
+           `std::vec::Vec<ylong_runtime::task::JoinHandle<()>>: std::iter::Iterator`
+           which is required by `&mut std::vec::Vec<ylong_runtime::task::JoinHandle<()>>: std::iter::Iterator`
+           `[ylong_runtime::task::JoinHandle<()>]: std::iter::Iterator`
+           which is required by `&mut [ylong_runtime::task::JoinHandle<()>]: std::iter::Iterator`
+   = note: this error originates in the macro `ylong_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0689]: can't call method `for_each` on ambiguous numeric type `{integer}`
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:50:19
+   |
+50 |                 0.for_each(|_| {
+   |                   ^^^^^^^^
+...
+94 |     ylong_schedule_task!(ylong_task_120_15, 120, 15);
+   |     ------------------------------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `ylong_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you must specify a concrete type for this numeric value, like `i32`
+   |
+50 |                 0_i32.for_each(|_| {
+   |                 ~~~~~
+
+error[E0599]: `std::vec::Vec<ylong_runtime::task::JoinHandle<()>>` is not an iterator
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:57:26
+   |
+57 |                 handlers.for_each(|handler| {
+   |                 ---------^^^^^^^^ `std::vec::Vec<ylong_runtime::task::JoinHandle<()>>` is not an iterator; try calling `.into_iter()` or `.iter()`
+...
+94 |     ylong_schedule_task!(ylong_task_120_15, 120, 15);
+   |     ------------------------------------------------ in this macro invocation
+  --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs:396:1
+   |
+   = note: doesn't satisfy `_: Iterator`
+   |
+   = note: the following trait bounds were not satisfied:
+           `std::vec::Vec<ylong_runtime::task::JoinHandle<()>>: std::iter::Iterator`
+           which is required by `&mut std::vec::Vec<ylong_runtime::task::JoinHandle<()>>: std::iter::Iterator`
+           `[ylong_runtime::task::JoinHandle<()>]: std::iter::Iterator`
+           which is required by `&mut [ylong_runtime::task::JoinHandle<()>]: std::iter::Iterator`
+   = note: this error originates in the macro `ylong_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0689]: can't call method `for_each` on ambiguous numeric type `{integer}`
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:50:19
+   |
+50 |                 0.for_each(|_| {
+   |                   ^^^^^^^^
+...
+95 |     ylong_schedule_task!(ylong_task_10_30, 10, 30);
+   |     ---------------------------------------------- in this macro invocation
+   |
+   = note: this error originates in the macro `ylong_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you must specify a concrete type for this numeric value, like `i32`
+   |
+50 |                 0_i32.for_each(|_| {
+   |                 ~~~~~
+
+error[E0599]: `std::vec::Vec<ylong_runtime::task::JoinHandle<()>>` is not an iterator
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:57:26
+   |
+57 |                 handlers.for_each(|handler| {
+   |                 ---------^^^^^^^^ `std::vec::Vec<ylong_runtime::task::JoinHandle<()>>` is not an iterator; try calling `.into_iter()` or `.iter()`
+...
+95 |     ylong_schedule_task!(ylong_task_10_30, 10, 30);
+   |     ---------------------------------------------- in this macro invocation
+  --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs:396:1
+   |
+   = note: doesn't satisfy `_: Iterator`
+   |
+   = note: the following trait bounds were not satisfied:
+           `std::vec::Vec<ylong_runtime::task::JoinHandle<()>>: std::iter::Iterator`
+           which is required by `&mut std::vec::Vec<ylong_runtime::task::JoinHandle<()>>: std::iter::Iterator`
+           `[ylong_runtime::task::JoinHandle<()>]: std::iter::Iterator`
+           which is required by `&mut [ylong_runtime::task::JoinHandle<()>]: std::iter::Iterator`
+   = note: this error originates in the macro `ylong_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0689]: can't call method `for_each` on ambiguous numeric type `{integer}`
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:50:19
+   |
+50 |                 0.for_each(|_| {
+   |                   ^^^^^^^^
+...
+96 |     ylong_schedule_task!(ylong_task_120_30, 120, 30);
+   |     ------------------------------------------------ in this macro invocation
+   |
+   = note: this error originates in the macro `ylong_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you must specify a concrete type for this numeric value, like `i32`
+   |
+50 |                 0_i32.for_each(|_| {
+   |                 ~~~~~
+
+error[E0599]: `std::vec::Vec<ylong_runtime::task::JoinHandle<()>>` is not an iterator
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:57:26
+   |
+57 |                 handlers.for_each(|handler| {
+   |                 ---------^^^^^^^^ `std::vec::Vec<ylong_runtime::task::JoinHandle<()>>` is not an iterator; try calling `.into_iter()` or `.iter()`
+...
+96 |     ylong_schedule_task!(ylong_task_120_30, 120, 30);
+   |     ------------------------------------------------ in this macro invocation
+  --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs:396:1
+   |
+   = note: doesn't satisfy `_: Iterator`
+   |
+   = note: the following trait bounds were not satisfied:
+           `std::vec::Vec<ylong_runtime::task::JoinHandle<()>>: std::iter::Iterator`
+           which is required by `&mut std::vec::Vec<ylong_runtime::task::JoinHandle<()>>: std::iter::Iterator`
+           `[ylong_runtime::task::JoinHandle<()>]: std::iter::Iterator`
+           which is required by `&mut [ylong_runtime::task::JoinHandle<()>]: std::iter::Iterator`
+   = note: this error originates in the macro `ylong_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: aborting due to 17 previous errors
+
+Some errors have detailed explanations: E0599, E0689.
+For more information about an error, try `rustc --explain E0599`.
+Original diagnostics will follow.
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:28:17
+   |
+28 | /                 for _ in 0..$num {
+29 | |                     handlers.push(runtime.spawn(async move {
+30 | |                         fibbo($upper);
+31 | |                         yield_now().await;
+32 | |                     }));
+33 | |                 }
+   | |_________________^
+...
+76 |       tokio_schedule_task!(tokio_runtime(), tokio_task_10_15, 10, 15);
+   |       --------------------------------------------------------------- in this macro invocation
+   |
+   = note: this warning originates in the macro `tokio_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: try using `for_each` on the iterator
+   |
+28 ~                 0.for_each(|_| {
+29 +                     handlers.push(runtime.spawn(async move {
+30 +                         fibbo($upper);
+31 +                         yield_now().await;
+32 +                     }));
+33 +                 });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:35:17
+   |
+35 | /                 for handler in handlers {
+36 | |                     let _ = runtime.block_on(handler).unwrap();
+37 | |                 }
+   | |_________________^
+...
+76 |       tokio_schedule_task!(tokio_runtime(), tokio_task_10_15, 10, 15);
+   |       --------------------------------------------------------------- in this macro invocation
+   |
+   = note: this warning originates in the macro `tokio_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: try using `for_each` on the iterator
+   |
+35 ~                 handlers.for_each(|handler| {
+36 +                     let _ = runtime.block_on(handler).unwrap();
+37 +                 });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:28:17
+   |
+28 | /                 for _ in 0..$num {
+29 | |                     handlers.push(runtime.spawn(async move {
+30 | |                         fibbo($upper);
+31 | |                         yield_now().await;
+32 | |                     }));
+33 | |                 }
+   | |_________________^
+...
+77 |       tokio_schedule_task!(tokio_runtime(), tokio_task_120_15, 120, 15);
+   |       ----------------------------------------------------------------- in this macro invocation
+   |
+   = note: this warning originates in the macro `tokio_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: try using `for_each` on the iterator
+   |
+28 ~                 0.for_each(|_| {
+29 +                     handlers.push(runtime.spawn(async move {
+30 +                         fibbo($upper);
+31 +                         yield_now().await;
+32 +                     }));
+33 +                 });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:35:17
+   |
+35 | /                 for handler in handlers {
+36 | |                     let _ = runtime.block_on(handler).unwrap();
+37 | |                 }
+   | |_________________^
+...
+77 |       tokio_schedule_task!(tokio_runtime(), tokio_task_120_15, 120, 15);
+   |       ----------------------------------------------------------------- in this macro invocation
+   |
+   = note: this warning originates in the macro `tokio_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: try using `for_each` on the iterator
+   |
+35 ~                 handlers.for_each(|handler| {
+36 +                     let _ = runtime.block_on(handler).unwrap();
+37 +                 });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:28:17
+   |
+28 | /                 for _ in 0..$num {
+29 | |                     handlers.push(runtime.spawn(async move {
+30 | |                         fibbo($upper);
+31 | |                         yield_now().await;
+32 | |                     }));
+33 | |                 }
+   | |_________________^
+...
+78 |       tokio_schedule_task!(tokio_runtime(), tokio_task_10_30, 10, 30);
+   |       --------------------------------------------------------------- in this macro invocation
+   |
+   = note: this warning originates in the macro `tokio_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: try using `for_each` on the iterator
+   |
+28 ~                 0.for_each(|_| {
+29 +                     handlers.push(runtime.spawn(async move {
+30 +                         fibbo($upper);
+31 +                         yield_now().await;
+32 +                     }));
+33 +                 });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:35:17
+   |
+35 | /                 for handler in handlers {
+36 | |                     let _ = runtime.block_on(handler).unwrap();
+37 | |                 }
+   | |_________________^
+...
+78 |       tokio_schedule_task!(tokio_runtime(), tokio_task_10_30, 10, 30);
+   |       --------------------------------------------------------------- in this macro invocation
+   |
+   = note: this warning originates in the macro `tokio_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: try using `for_each` on the iterator
+   |
+35 ~                 handlers.for_each(|handler| {
+36 +                     let _ = runtime.block_on(handler).unwrap();
+37 +                 });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:28:17
+   |
+28 | /                 for _ in 0..$num {
+29 | |                     handlers.push(runtime.spawn(async move {
+30 | |                         fibbo($upper);
+31 | |                         yield_now().await;
+32 | |                     }));
+33 | |                 }
+   | |_________________^
+...
+79 |       tokio_schedule_task!(tokio_runtime(), tokio_task_120_30, 120, 30);
+   |       ----------------------------------------------------------------- in this macro invocation
+   |
+   = note: this warning originates in the macro `tokio_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: try using `for_each` on the iterator
+   |
+28 ~                 0.for_each(|_| {
+29 +                     handlers.push(runtime.spawn(async move {
+30 +                         fibbo($upper);
+31 +                         yield_now().await;
+32 +                     }));
+33 +                 });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:35:17
+   |
+35 | /                 for handler in handlers {
+36 | |                     let _ = runtime.block_on(handler).unwrap();
+37 | |                 }
+   | |_________________^
+...
+79 |       tokio_schedule_task!(tokio_runtime(), tokio_task_120_30, 120, 30);
+   |       ----------------------------------------------------------------- in this macro invocation
+   |
+   = note: this warning originates in the macro `tokio_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: try using `for_each` on the iterator
+   |
+35 ~                 handlers.for_each(|handler| {
+36 +                     let _ = runtime.block_on(handler).unwrap();
+37 +                 });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:50:17
+   |
+50 | /                 for _ in 0..$num {
+51 | |                     handlers.push(ylong_runtime::spawn(async move {
+52 | |                         fibbo($upper);
+53 | |                         yield_now().await;
+54 | |                     }));
+55 | |                 }
+   | |_________________^
+...
+93 |       ylong_schedule_task!(ylong_task_10_15, 10, 15);
+   |       ---------------------------------------------- in this macro invocation
+   |
+   = note: this warning originates in the macro `ylong_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: try using `for_each` on the iterator
+   |
+50 ~                 0.for_each(|_| {
+51 +                     handlers.push(ylong_runtime::spawn(async move {
+52 +                         fibbo($upper);
+53 +                         yield_now().await;
+54 +                     }));
+55 +                 });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:57:17
+   |
+57 | /                 for handler in handlers {
+58 | |                     let _ = ylong_runtime::block_on(handler).unwrap();
+59 | |                 }
+   | |_________________^
+...
+93 |       ylong_schedule_task!(ylong_task_10_15, 10, 15);
+   |       ---------------------------------------------- in this macro invocation
+   |
+   = note: this warning originates in the macro `ylong_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: try using `for_each` on the iterator
+   |
+57 ~                 handlers.for_each(|handler| {
+58 +                     let _ = ylong_runtime::block_on(handler).unwrap();
+59 +                 });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:50:17
+   |
+50 | /                 for _ in 0..$num {
+51 | |                     handlers.push(ylong_runtime::spawn(async move {
+52 | |                         fibbo($upper);
+53 | |                         yield_now().await;
+54 | |                     }));
+55 | |                 }
+   | |_________________^
+...
+94 |       ylong_schedule_task!(ylong_task_120_15, 120, 15);
+   |       ------------------------------------------------ in this macro invocation
+   |
+   = note: this warning originates in the macro `ylong_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: try using `for_each` on the iterator
+   |
+50 ~                 0.for_each(|_| {
+51 +                     handlers.push(ylong_runtime::spawn(async move {
+52 +                         fibbo($upper);
+53 +                         yield_now().await;
+54 +                     }));
+55 +                 });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:57:17
+   |
+57 | /                 for handler in handlers {
+58 | |                     let _ = ylong_runtime::block_on(handler).unwrap();
+59 | |                 }
+   | |_________________^
+...
+94 |       ylong_schedule_task!(ylong_task_120_15, 120, 15);
+   |       ------------------------------------------------ in this macro invocation
+   |
+   = note: this warning originates in the macro `ylong_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: try using `for_each` on the iterator
+   |
+57 ~                 handlers.for_each(|handler| {
+58 +                     let _ = ylong_runtime::block_on(handler).unwrap();
+59 +                 });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:50:17
+   |
+50 | /                 for _ in 0..$num {
+51 | |                     handlers.push(ylong_runtime::spawn(async move {
+52 | |                         fibbo($upper);
+53 | |                         yield_now().await;
+54 | |                     }));
+55 | |                 }
+   | |_________________^
+...
+95 |       ylong_schedule_task!(ylong_task_10_30, 10, 30);
+   |       ---------------------------------------------- in this macro invocation
+   |
+   = note: this warning originates in the macro `ylong_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: try using `for_each` on the iterator
+   |
+50 ~                 0.for_each(|_| {
+51 +                     handlers.push(ylong_runtime::spawn(async move {
+52 +                         fibbo($upper);
+53 +                         yield_now().await;
+54 +                     }));
+55 +                 });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:57:17
+   |
+57 | /                 for handler in handlers {
+58 | |                     let _ = ylong_runtime::block_on(handler).unwrap();
+59 | |                 }
+   | |_________________^
+...
+95 |       ylong_schedule_task!(ylong_task_10_30, 10, 30);
+   |       ---------------------------------------------- in this macro invocation
+   |
+   = note: this warning originates in the macro `ylong_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: try using `for_each` on the iterator
+   |
+57 ~                 handlers.for_each(|handler| {
+58 +                     let _ = ylong_runtime::block_on(handler).unwrap();
+59 +                 });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:50:17
+   |
+50 | /                 for _ in 0..$num {
+51 | |                     handlers.push(ylong_runtime::spawn(async move {
+52 | |                         fibbo($upper);
+53 | |                         yield_now().await;
+54 | |                     }));
+55 | |                 }
+   | |_________________^
+...
+96 |       ylong_schedule_task!(ylong_task_120_30, 120, 30);
+   |       ------------------------------------------------ in this macro invocation
+   |
+   = note: this warning originates in the macro `ylong_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: try using `for_each` on the iterator
+   |
+50 ~                 0.for_each(|_| {
+51 +                     handlers.push(ylong_runtime::spawn(async move {
+52 +                         fibbo($upper);
+53 +                         yield_now().await;
+54 +                     }));
+55 +                 });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> ylong_runtime/benches/ylong_tokio_schedule.rs:57:17
+   |
+57 | /                 for handler in handlers {
+58 | |                     let _ = ylong_runtime::block_on(handler).unwrap();
+59 | |                 }
+   | |_________________^
+...
+96 |       ylong_schedule_task!(ylong_task_120_30, 120, 30);
+   |       ------------------------------------------------ in this macro invocation
+   |
+   = note: this warning originates in the macro `ylong_schedule_task` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: try using `for_each` on the iterator
+   |
+57 ~                 handlers.for_each(|handler| {
+58 +                     let _ = ylong_runtime::block_on(handler).unwrap();
+59 +                 });
+   |
+
+warning: `ylong_runtime` (bench "ylong_tokio_schedule") generated 18 warnings (2 duplicates) (run `cargo fix --bench "ylong_tokio_schedule"` to apply 16 suggestions)
+warning: `ylong_runtime` (lib test) generated 30 warnings (26 duplicates) (run `cargo fix --lib -p ylong_runtime --tests` to apply 4 suggestions)
+    Finished dev [unoptimized + debuginfo] target(s) in 4.68s

@@ -1,0 +1,1002 @@
+    Updating git repository `https://github.com/trusted-programming/cargo-mate`
+Building workspace metadata entry `cargo-mate`
+    Finished release [optimized] target(s) in 0.08s
+Fixing with toolchain `nightly-2023-10-06-x86_64-unknown-linux-gnu`
+    Checking tar v0.4.40 (/home/c00834010/dev/tar-rs)
+warning: failed to automatically apply fixes suggested by rustc to crate `tar`
+
+after fixes were automatically applied the compiler reported errors within these files:
+
+  * /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs
+  * src/archive.rs
+  * src/builder.rs
+  * src/entry.rs
+  * src/header.rs
+  * src/pax.rs
+
+This likely indicates a bug in either rustc or cargo itself,
+and we would appreciate a bug report! You're likely to see 
+a number of compiler warnings after this message which cargo
+attempted to fix but failed. If you could open an issue at
+https://github.com/rust-lang/rust/issues
+quoting the full output of this command we'd be very appreciative!
+Note that you may be able to make some more progress in the near-term
+fixing code with the `--broken-code` flag
+
+The following errors were reported:
+error[E0267]: `continue` inside of a closure
+   --> src/entry.rs:408:87
+    |
+403 |             path.components().for_each(|part| {
+    |                                        ------ enclosing closure
+...
+408 |                     Component::Prefix(..) | Component::RootDir | Component::CurDir => continue,
+    |                                                                                       ^^^^^^^^ cannot `continue` inside of a closure
+
+error[E0267]: `continue` inside of a closure
+    --> src/header.rs:1516:43
+     |
+1505 |     path.components().for_each(|component| {
+     |                                ----------- enclosing closure
+...
+1516 |             (Component::CurDir, false) => continue,
+     |                                           ^^^^^^^^ cannot `continue` inside of a closure
+
+error[E0267]: `continue` inside of a closure
+  --> src/pax.rs:70:13
+   |
+64 |     PaxExtensions::new(a).for_each(|extension| {
+   |                                    ----------- enclosing closure
+...
+70 |             continue;
+   |             ^^^^^^^^ cannot `continue` inside of a closure
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `std::ops::FromResidual`)
+   --> src/archive.rs:234:97
+    |
+233 |         self._entries(None)?.for_each(|entry| {
+    |                                       ------- this function should return `Result` or `Option` to accept `?`
+234 |             let mut file = entry.map_err(|e| TarError::new("failed to iterate over archive", e))?;
+    |                                                                                                 ^ cannot use the `?` operator in a closure that returns `()`
+    |
+    = help: the trait `std::ops::FromResidual<std::result::Result<std::convert::Infallible, error::TarError>>` is not implemented for `()`
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `std::ops::FromResidual`)
+   --> src/archive.rs:238:36
+    |
+233 |         self._entries(None)?.for_each(|entry| {
+    |                                       ------- this function should return `Result` or `Option` to accept `?`
+...
+238 |                 file.unpack_in(dst)?;
+    |                                    ^ cannot use the `?` operator in a closure that returns `()`
+    |
+    = help: the trait `std::ops::FromResidual<std::result::Result<std::convert::Infallible, std::io::Error>>` is not implemented for `()`
+
+error[E0599]: `std::vec::Vec<entry::Entry<'_, std::io::Empty>>` is not an iterator
+   --> src/archive.rs:241:21
+    |
+241 |         directories.for_each(|mut dir| {
+    |         ------------^^^^^^^^ `std::vec::Vec<entry::Entry<'_, std::io::Empty>>` is not an iterator; try calling `.into_iter()` or `.iter()`
+   --> /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/alloc/src/vec/mod.rs:396:1
+    |
+    = note: doesn't satisfy `_: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `std::vec::Vec<entry::Entry<'_, std::io::Empty>>: std::iter::Iterator`
+            which is required by `&mut std::vec::Vec<entry::Entry<'_, std::io::Empty>>: std::iter::Iterator`
+            `[entry::Entry<'_, std::io::Empty>]: std::iter::Iterator`
+            which is required by `&mut [entry::Entry<'_, std::io::Empty>]: std::iter::Iterator`
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `std::ops::FromResidual`)
+   --> src/archive.rs:504:33
+    |
+503 |             gnu.sparse.iter().for_each(|block| {
+    |                                        ------- this function should return `Result` or `Option` to accept `?`
+504 |                 add_block(block)?
+    |                                 ^ cannot use the `?` operator in a closure that returns `()`
+    |
+    = help: the trait `std::ops::FromResidual<std::result::Result<std::convert::Infallible, std::io::Error>>` is not implemented for `()`
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `std::ops::FromResidual`)
+   --> src/archive.rs:516:41
+    |
+515 |                     ext.sparse.iter().for_each(|block| {
+    |                                                ------- this function should return `Result` or `Option` to accept `?`
+516 |                         add_block(block)?;
+    |                                         ^ cannot use the `?` operator in a closure that returns `()`
+    |
+    = help: the trait `std::ops::FromResidual<std::result::Result<std::convert::Infallible, std::io::Error>>` is not implemented for `()`
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `std::ops::FromResidual`)
+   --> src/builder.rs:633:34
+    |
+632 |             fs::read_dir(&src)?.for_each(|entry| {
+    |                                          ------- this function should return `Result` or `Option` to accept `?`
+633 |                 let entry = entry?;
+    |                                  ^ cannot use the `?` operator in a closure that returns `()`
+    |
+    = help: the trait `std::ops::FromResidual<std::result::Result<std::convert::Infallible, std::io::Error>>` is not implemented for `()`
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `std::ops::FromResidual`)
+   --> src/builder.rs:634:50
+    |
+632 |             fs::read_dir(&src)?.for_each(|entry| {
+    |                                          ------- this function should return `Result` or `Option` to accept `?`
+633 |                 let entry = entry?;
+634 |                 let file_type = entry.file_type()?;
+    |                                                  ^ cannot use the `?` operator in a closure that returns `()`
+    |
+    = help: the trait `std::ops::FromResidual<std::result::Result<std::convert::Infallible, std::io::Error>>` is not implemented for `()`
+
+error[E0308]: mismatched types
+   --> src/entry.rs:414:52
+    |
+414 |                     Component::ParentDir => return Ok(false),
+    |                                                    ^^^^^^^^^ expected `()`, found `Result<bool, _>`
+    |
+    = note: expected unit type `()`
+                    found enum `std::result::Result<bool, _>`
+note: return type inferred to be `()` here
+   --> src/entry.rs:414:52
+    |
+414 |                     Component::ParentDir => return Ok(false),
+    |                                                    ^^^^^^^^^
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `std::ops::FromResidual`)
+   --> src/entry.rs:660:52
+    |
+656 |             self.data.drain(..).for_each(|io| {
+    |                                          ---- this function should return `Result` or `Option` to accept `?`
+...
+660 |                         if io::copy(&mut d, &mut f)? != expected {
+    |                                                    ^ cannot use the `?` operator in a closure that returns `()`
+    |
+    = help: the trait `std::ops::FromResidual<std::result::Result<std::convert::Infallible, std::io::Error>>` is not implemented for `()`
+
+error[E0308]: mismatched types
+   --> src/entry.rs:661:36
+    |
+661 | ...                   return Err(other("failed to write entire file"));
+    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `()`, found `Result<_, Error>`
+    |
+    = note: expected unit type `()`
+                    found enum `std::result::Result<_, std::io::Error>`
+note: return type inferred to be `()` here
+   --> src/entry.rs:660:28
+    |
+660 |                         if io::copy(&mut d, &mut f)? != expected {
+    |                            ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `std::ops::FromResidual`)
+   --> src/entry.rs:889:19
+    |
+876 |             exts.for_each(|(key, value)| {
+    |                           -------------- this function should return `Result` or `Option` to accept `?`
+...
+889 |                 })?;
+    |                   ^ cannot use the `?` operator in a closure that returns `()`
+    |
+    = help: the trait `std::ops::FromResidual<std::result::Result<std::convert::Infallible, error::TarError>>` is not implemented for `()`
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `std::ops::FromResidual`)
+   --> src/entry.rs:915:54
+    |
+913 |         dirs_to_create.into_iter().rev().for_each(|ancestor| {
+    |                                                   ---------- this function should return `Result` or `Option` to accept `?`
+914 |             if let Some(parent) = ancestor.parent() {
+915 |                 self.validate_inside_dst(dst, parent)?;
+    |                                                      ^ cannot use the `?` operator in a closure that returns `()`
+    |
+    = help: the trait `std::ops::FromResidual<std::result::Result<std::convert::Infallible, std::io::Error>>` is not implemented for `()`
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `std::ops::FromResidual`)
+   --> src/entry.rs:917:41
+    |
+913 |         dirs_to_create.into_iter().rev().for_each(|ancestor| {
+    |                                                   ---------- this function should return `Result` or `Option` to accept `?`
+...
+917 |             fs::create_dir_all(ancestor)?;
+    |                                         ^ cannot use the `?` operator in a closure that returns `()`
+    |
+    = help: the trait `std::ops::FromResidual<std::result::Result<std::convert::Infallible, std::io::Error>>` is not implemented for `()`
+
+error[E0599]: `&'a [header::GnuSparseHeader]` is not an iterator
+    --> src/header.rs:1303:16
+     |
+1303 |         self.0.for_each(|header| {
+     |         -------^^^^^^^^ `&'a [header::GnuSparseHeader]` is not an iterator; try calling `.iter()`
+     |
+     = note: the following trait bounds were not satisfied:
+             `&'a [header::GnuSparseHeader]: std::iter::Iterator`
+             which is required by `&mut &'a [header::GnuSparseHeader]: std::iter::Iterator`
+             `[header::GnuSparseHeader]: std::iter::Iterator`
+             which is required by `&mut [header::GnuSparseHeader]: std::iter::Iterator`
+
+error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `std::ops::FromResidual`)
+    --> src/header.rs:1506:65
+     |
+1505 |     path.components().for_each(|component| {
+     |                                ----------- this function should return `Result` or `Option` to accept `?`
+1506 |         let bytes = path2bytes(Path::new(component.as_os_str()))?;
+     |                                                                 ^ cannot use the `?` operator in a closure that returns `()`
+     |
+     = help: the trait `std::ops::FromResidual<std::result::Result<std::convert::Infallible, std::io::Error>>` is not implemented for `()`
+
+error[E0308]: mismatched types
+    --> src/header.rs:1509:24
+     |
+1509 |                 return Err(other("paths in archives must be relative"));
+     |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `()`, found `Result<_, Error>`
+     |
+     = note: expected unit type `()`
+                     found enum `std::result::Result<_, std::io::Error>`
+note: return type inferred to be `()` here
+    --> src/header.rs:1506:21
+     |
+1506 |         let bytes = path2bytes(Path::new(component.as_os_str()))?;
+     |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> src/pax.rs:67:30
+   |
+67 |             Err(_) => return None,
+   |                              ^^^^ expected `()`, found `Option<_>`
+   |
+   = note: expected unit type `()`
+                   found enum `std::option::Option<_>`
+note: return type inferred to be `()` here
+  --> src/pax.rs:67:30
+   |
+67 |             Err(_) => return None,
+   |                              ^^^^
+
+error: aborting due to 20 previous errors
+
+Some errors have detailed explanations: E0267, E0277, E0308, E0599.
+For more information about an error, try `rustc --explain E0267`.
+Original diagnostics will follow.
+
+warning: use a for_each to enable iterator refinement
+   --> src/archive.rs:233:9
+    |
+233 | /         for entry in self._entries(None)? {
+234 | |             let mut file = entry.map_err(|e| TarError::new("failed to iterate over archive", e))?;
+235 | |             if file.header().entry_type() == crate::EntryType::Directory {
+236 | |                 directories.push(file);
+...   |
+239 | |             }
+240 | |         }
+    | |_________^
+    |
+note: the lint level is defined here
+   --> src/lib.rs:22:24
+    |
+22  | #![cfg_attr(test, deny(warnings))]
+    |                        ^^^^^^^^
+    = note: `#[warn(lint::warn_foreach)]` implied by `#[warn(warnings)]`
+help: try using `for_each` on the iterator
+    |
+233 ~         self._entries(None)?.for_each(|entry| {
+234 +             let mut file = entry.map_err(|e| TarError::new("failed to iterate over archive", e))?;
+235 +             if file.header().entry_type() == crate::EntryType::Directory {
+236 +                 directories.push(file);
+237 +             } else {
+238 +                 file.unpack_in(dst)?;
+239 +             }
+240 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> src/archive.rs:241:9
+    |
+241 | /         for mut dir in directories {
+242 | |             dir.unpack_in(dst)?;
+243 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+241 ~         directories.for_each(|mut dir| {
+242 +             dir.unpack_in(dst)?;
+243 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> src/archive.rs:503:13
+    |
+503 | /             for block in gnu.sparse.iter() {
+504 | |                 add_block(block)?
+505 | |             }
+    | |_____________^
+    |
+help: try using `for_each` on the iterator
+    |
+503 ~             gnu.sparse.iter().for_each(|block| {
+504 +                 add_block(block)?
+505 +             });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> src/archive.rs:515:21
+    |
+515 | /                     for block in ext.sparse.iter() {
+516 | |                         add_block(block)?;
+517 | |                     }
+    | |_____________________^
+    |
+help: try using `for_each` on the iterator
+    |
+515 ~                     ext.sparse.iter().for_each(|block| {
+516 +                         add_block(block)?;
+517 +                     });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> src/builder.rs:632:13
+    |
+632 | /             for entry in fs::read_dir(&src)? {
+633 | |                 let entry = entry?;
+634 | |                 let file_type = entry.file_type()?;
+635 | |                 stack.push((entry.path(), file_type.is_dir(), file_type.is_symlink()));
+636 | |             }
+    | |_____________^
+    |
+help: try using `for_each` on the iterator
+    |
+632 ~             fs::read_dir(&src)?.for_each(|entry| {
+633 +                 let entry = entry?;
+634 +                 let file_type = entry.file_type()?;
+635 +                 stack.push((entry.path(), file_type.is_dir(), file_type.is_symlink()));
+636 +             });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> src/entry.rs:403:13
+    |
+403 | /             for part in path.components() {
+404 | |                 match part {
+405 | |                     // Leading '/' characters, root paths, and '.'
+406 | |                     // components are just ignored and treated as "empty
+...   |
+417 | |                 }
+418 | |             }
+    | |_____________^
+    |
+help: try using `for_each` on the iterator
+    |
+403 ~             path.components().for_each(|part| {
+404 +                 match part {
+405 +                     // Leading '/' characters, root paths, and '.'
+406 +                     // components are just ignored and treated as "empty
+407 +                     // components"
+408 +                     Component::Prefix(..) | Component::RootDir | Component::CurDir => continue,
+409 + 
+410 +                     // If any part of the filename is '..', then skip over
+411 +                     // unpacking the file to prevent directory traversal
+412 +                     // security issues.  See, e.g.: CVE-2001-1267,
+413 +                     // CVE-2002-0399, CVE-2005-1918, CVE-2007-4131
+414 +                     Component::ParentDir => return Ok(false),
+415 + 
+416 +                     Component::Normal(part) => file_dst.push(part),
+417 +                 }
+418 +             });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> src/entry.rs:656:13
+    |
+656 | /             for io in self.data.drain(..) {
+657 | |                 match io {
+658 | |                     EntryIo::Data(mut d) => {
+659 | |                         let expected = d.limit();
+...   |
+670 | |                 }
+671 | |             }
+    | |_____________^
+    |
+help: try using `for_each` on the iterator
+    |
+656 ~             self.data.drain(..).for_each(|io| {
+657 +                 match io {
+658 +                     EntryIo::Data(mut d) => {
+659 +                         let expected = d.limit();
+660 +                         if io::copy(&mut d, &mut f)? != expected {
+661 +                             return Err(other("failed to write entire file"));
+662 +                         }
+663 +                     }
+664 +                     EntryIo::Pad(d) => {
+665 +                         // TODO: checked cast to i64
+666 +                         let to = SeekFrom::Current(d.limit() as i64);
+667 +                         let size = f.seek(to)?;
+668 +                         f.set_len(size)?;
+669 +                     }
+670 +                 }
+671 +             });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> src/entry.rs:876:13
+    |
+876 | /             for (key, value) in exts {
+877 | |                 xattr::set(dst, key, value).map_err(|e| {
+878 | |                     TarError::new(
+879 | |                         format!(
+...   |
+889 | |                 })?;
+890 | |             }
+    | |_____________^
+    |
+help: try using `for_each` on the iterator
+    |
+876 ~             exts.for_each(|(key, value)| {
+877 +                 xattr::set(dst, key, value).map_err(|e| {
+878 +                     TarError::new(
+879 +                         format!(
+880 +                             "failed to set extended \
+881 +                              attributes to {}. \
+882 +                              Xattrs: key={:?}, value={:?}.",
+883 +                             dst.display(),
+884 +                             key,
+885 +                             String::from_utf8_lossy(value)
+886 +                         ),
+887 +                         e,
+888 +                     )
+889 +                 })?;
+890 +             });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> src/entry.rs:913:9
+    |
+913 | /         for ancestor in dirs_to_create.into_iter().rev() {
+914 | |             if let Some(parent) = ancestor.parent() {
+915 | |                 self.validate_inside_dst(dst, parent)?;
+916 | |             }
+917 | |             fs::create_dir_all(ancestor)?;
+918 | |         }
+    | |_________^
+    |
+help: try using `for_each` on the iterator
+    |
+913 ~         dirs_to_create.into_iter().rev().for_each(|ancestor| {
+914 +             if let Some(parent) = ancestor.parent() {
+915 +                 self.validate_inside_dst(dst, parent)?;
+916 +             }
+917 +             fs::create_dir_all(ancestor)?;
+918 +         });
+    |
+
+warning: use a for_each to enable iterator refinement
+    --> src/header.rs:1303:9
+     |
+1303 | /         for header in self.0 {
+1304 | |             if !header.is_empty() {
+1305 | |                 f.entry(header);
+1306 | |             }
+1307 | |         }
+     | |_________^
+     |
+help: try using `for_each` on the iterator
+     |
+1303 ~         self.0.for_each(|header| {
+1304 +             if !header.is_empty() {
+1305 +                 f.entry(header);
+1306 +             }
+1307 +         });
+     |
+
+warning: use a for_each to enable iterator refinement
+    --> src/header.rs:1414:5
+     |
+1414 | /     for (slot, value) in dst.iter_mut().rev().skip(1).zip(value) {
+1415 | |         *slot = value;
+1416 | |     }
+     | |_____^
+     |
+help: try using `for_each` on the iterator
+     |
+1414 ~     dst.iter_mut().rev().skip(1).zip(value).for_each(|(slot, value)| {
+1415 +         *slot = value;
+1416 +     });
+     |
+
+warning: use a for_each to enable iterator refinement
+    --> src/header.rs:1445:5
+     |
+1445 | /     for (slot, val) in dst.iter_mut().zip(
+1446 | |         repeat(0)
+1447 | |             .take(len - 8) // to zero init extra bytes
+1448 | |             .chain((0..8).rev().map(|x| ((src >> (8 * x)) & 0xff) as u8)),
+1449 | |     ) {
+1450 | |         *slot = val;
+1451 | |     }
+     | |_____^
+     |
+help: try using `for_each` on the iterator
+     |
+1445 ~     dst.iter_mut().zip(
+1446 +         repeat(0)
+1447 +             .take(len - 8) // to zero init extra bytes
+1448 +             .chain((0..8).rev().map(|x| ((src >> (8 * x)) & 0xff) as u8)),
+1449 +     ).for_each(|(slot, val)| {
+1450 +         *slot = val;
+1451 +     });
+     |
+
+warning: use a for_each to enable iterator refinement
+    --> src/header.rs:1465:5
+     |
+1465 | /     for byte in src.iter().skip(b_to_skip) {
+1466 | |         dst <<= 8;
+1467 | |         dst |= *byte as u64;
+1468 | |     }
+     | |_____^
+     |
+help: try using `for_each` on the iterator
+     |
+1465 ~     src.iter().skip(b_to_skip).for_each(|byte| {
+1466 +         dst <<= 8;
+1467 +         dst |= *byte as u64;
+1468 +     });
+     |
+
+warning: use a for_each to enable iterator refinement
+    --> src/header.rs:1487:9
+     |
+1487 | /         for (slot, val) in slot.iter_mut().zip(bytes.iter().chain(Some(&0))) {
+1488 | |             *slot = *val;
+1489 | |         }
+     | |_________^
+     |
+help: try using `for_each` on the iterator
+     |
+1487 ~         slot.iter_mut().zip(bytes.iter().chain(Some(&0))).for_each(|(slot, val)| {
+1488 +             *slot = *val;
+1489 +         });
+     |
+
+warning: use a for_each to enable iterator refinement
+    --> src/header.rs:1505:5
+     |
+1505 | /     for component in path.components() {
+1506 | |         let bytes = path2bytes(Path::new(component.as_os_str()))?;
+1507 | |         match (component, is_link_name) {
+1508 | |             (Component::Prefix(..), false) | (Component::RootDir, false) => {
+...    |
+1531 | |         emitted = true;
+1532 | |     }
+     | |_____^
+     |
+help: try using `for_each` on the iterator
+     |
+1505 ~     path.components().for_each(|component| {
+1506 +         let bytes = path2bytes(Path::new(component.as_os_str()))?;
+1507 +         match (component, is_link_name) {
+1508 +             (Component::Prefix(..), false) | (Component::RootDir, false) => {
+1509 +                 return Err(other("paths in archives must be relative"));
+1510 +             }
+1511 +             (Component::ParentDir, false) => {
+1512 +                 return Err(other("paths in archives must not have `..`"));
+1513 +             }
+1514 +             // Allow "./" as the path
+1515 +             (Component::CurDir, false) if path.components().count() == 1 => {}
+1516 +             (Component::CurDir, false) => continue,
+1517 +             (Component::Normal(_), _) | (_, true) => {}
+1518 +         };
+1519 +         if needs_slash {
+1520 +             copy(&mut slot, b"/")?;
+1521 +         }
+1522 +         if bytes.contains(&b'/') {
+1523 +             if let Component::Normal(..) = component {
+1524 +                 return Err(other("path component in archive cannot contain `/`"));
+1525 +             }
+1526 +         }
+1527 +         copy(&mut slot, &*bytes)?;
+1528 +         if &*bytes != b"/" {
+1529 +             needs_slash = true;
+1530 +         }
+1531 +         emitted = true;
+1532 +     });
+     |
+
+warning: use a for_each to enable iterator refinement
+  --> src/pax.rs:64:5
+   |
+64 | /     for extension in PaxExtensions::new(a) {
+65 | |         let current_extension = match extension {
+66 | |             Ok(ext) => ext,
+67 | |             Err(_) => return None,
+...  |
+81 | |         return Some(result);
+82 | |     }
+   | |_____^
+   |
+help: try using `for_each` on the iterator
+   |
+64 ~     PaxExtensions::new(a).for_each(|extension| {
+65 +         let current_extension = match extension {
+66 +             Ok(ext) => ext,
+67 +             Err(_) => return None,
+68 +         };
+69 +         if current_extension.key() != Ok(key) {
+70 +             continue;
+71 +         }
+72 + 
+73 +         let value = match current_extension.value() {
+74 +             Ok(value) => value,
+75 +             Err(_) => return None,
+76 +         };
+77 +         let result = match value.parse::<u64>() {
+78 +             Ok(result) => result,
+79 +             Err(_) => return None,
+80 +         };
+81 +         return Some(result);
+82 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+   --> src/archive.rs:233:9
+    |
+233 | /         for entry in self._entries(None)? {
+234 | |             let mut file = entry.map_err(|e| TarError::new("failed to iterate over archive", e))?;
+235 | |             if file.header().entry_type() == crate::EntryType::Directory {
+236 | |                 directories.push(file);
+...   |
+239 | |             }
+240 | |         }
+    | |_________^
+    |
+    = note: `#[warn(lint::warn_foreach)]` on by default
+help: try using `for_each` on the iterator
+    |
+233 ~         self._entries(None)?.for_each(|entry| {
+234 +             let mut file = entry.map_err(|e| TarError::new("failed to iterate over archive", e))?;
+235 +             if file.header().entry_type() == crate::EntryType::Directory {
+236 +                 directories.push(file);
+237 +             } else {
+238 +                 file.unpack_in(dst)?;
+239 +             }
+240 +         });
+    |
+
+warning: `tar` (lib) generated 16 warnings (15 duplicates) (run `cargo fix --lib -p tar` to apply 1 suggestion)
+warning: `tar` (lib test) generated 16 warnings (run `cargo fix --lib -p tar --tests` to apply 16 suggestions)
+warning: failed to automatically apply fixes suggested by rustc to crate `all`
+
+after fixes were automatically applied the compiler reported errors within these files:
+
+  * tests/all.rs
+
+This likely indicates a bug in either rustc or cargo itself,
+and we would appreciate a bug report! You're likely to see 
+a number of compiler warnings after this message which cargo
+attempted to fix but failed. If you could open an issue at
+https://github.com/rust-lang/rust/issues
+quoting the full output of this command we'd be very appreciative!
+Note that you may be able to make some more progress in the near-term
+fixing code with the `--broken-code` flag
+
+The following errors were reported:
+error: expected expression, found `$`
+  --> tests/all.rs:72:15
+   |
+72 |         match $e {
+   |         ----- ^ expected expression
+   |         |
+   |         while parsing this `match` expression
+
+error: expected expression, found `$`
+  --> tests/all.rs:89:11
+   |
+89 |     match $e {
+   |     ----- ^ expected expression
+   |     |
+   |     while parsing this `match` expression
+
+error: expected expression, found `$`
+   --> tests/all.rs:107:11
+    |
+107 |     match $e {
+    |     ----- ^ expected expression
+    |     |
+    |     while parsing this `match` expression
+
+error[E0599]: `[tar::EntryType; 2]` is not an iterator
+   --> tests/all.rs:977:53
+    |
+977 |     [tar::EntryType::Symlink, tar::EntryType::Link].for_each(|t| {
+    |     ------------------------------------------------^^^^^^^^ `[tar::EntryType; 2]` is not an iterator; try calling `.into_iter()` or `.iter()`
+    |
+    = note: the following trait bounds were not satisfied:
+            `[tar::EntryType; 2]: std::iter::Iterator`
+            which is required by `&mut [tar::EntryType; 2]: std::iter::Iterator`
+            `[tar::EntryType]: std::iter::Iterator`
+            which is required by `&mut [tar::EntryType]: std::iter::Iterator`
+
+error[E0599]: `[tar::EntryType; 2]` is not an iterator
+   --> tests/all.rs:998:53
+    |
+998 |     [tar::EntryType::Symlink, tar::EntryType::Link].for_each(|t| {
+    |     ------------------------------------------------^^^^^^^^ `[tar::EntryType; 2]` is not an iterator; try calling `.into_iter()` or `.iter()`
+    |
+    = note: the following trait bounds were not satisfied:
+            `[tar::EntryType; 2]: std::iter::Iterator`
+            which is required by `&mut [tar::EntryType; 2]: std::iter::Iterator`
+            `[tar::EntryType]: std::iter::Iterator`
+            which is required by `&mut [tar::EntryType]: std::iter::Iterator`
+
+error[E0689]: can't call method `for_each` on type `{integer}`
+    --> tests/all.rs:1340:12
+     |
+1340 |     0..512.for_each(|_| {
+     |            ^^^^^^^^ can't call method `for_each` on type `{integer}`
+     |
+help: you must surround the range in parentheses to call its `for_each` function
+     |
+1340 |     (0..512).for_each(|_| {
+     |     +      +
+
+error[E0599]: `[&[u8]; 2]` is not an iterator
+    --> tests/all.rs:1506:14
+     |
+1506 |     &tarlist.for_each(|file| {
+     |      --------^^^^^^^^ `[&[u8]; 2]` is not an iterator; try calling `.into_iter()` or `.iter()`
+     |
+     = note: the following trait bounds were not satisfied:
+             `[&[u8]; 2]: std::iter::Iterator`
+             which is required by `&mut [&[u8]; 2]: std::iter::Iterator`
+             `[&[u8]]: std::iter::Iterator`
+             which is required by `&mut [&[u8]]: std::iter::Iterator`
+
+error: aborting due to 7 previous errors
+
+Some errors have detailed explanations: E0599, E0689.
+For more information about an error, try `rustc --explain E0599`.
+Original diagnostics will follow.
+
+warning: use a for_each to enable iterator refinement
+  --> tests/header/mod.rs:54:5
+   |
+54 | /     for (slot, val) in h.as_old_mut().linkname.iter_mut().zip(name.as_bytes()) {
+55 | |         *slot = *val;
+56 | |     }
+   | |_____^
+   |
+   = note: `#[warn(lint::warn_foreach)]` on by default
+help: try using `for_each` on the iterator
+   |
+54 ~     h.as_old_mut().linkname.iter_mut().zip(name.as_bytes()).for_each(|(slot, val)| {
+55 +         *slot = *val;
+56 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> tests/all.rs:72:9
+   |
+72 | /         for entry in t!(ar.entries()) {
+73 | |             let e = t!(entry);
+74 | |             names.push(t!(::std::str::from_utf8(&e.path_bytes())).to_string());
+75 | |         }
+   | |_________^
+   |
+help: try using `for_each` on the iterator
+   |
+72 ~         match $e {
+73 +             Ok(v) => v,
+74 +             Err(e) => panic!("{} returned {}", stringify!($e), e),
+75 +         }.for_each(|entry| {
+76 +             let e = t!(entry);
+77 +             names.push(t!(::std::str::from_utf8(&e.path_bytes())).to_string());
+78 +         });
+   |
+
+warning: use a for_each to enable iterator refinement
+  --> tests/all.rs:86:5
+   |
+86 | /     for file in t!(ar.entries()) {
+87 | |         let file = t!(file);
+88 | |         let h1 = file.header();
+89 | |         let h1b = h1.as_bytes();
+...  |
+92 | |         assert!(h1b[..] == h2b[..] && h2b[..] != hnb[..])
+93 | |     }
+   | |_____^
+   |
+help: try using `for_each` on the iterator
+   |
+86 ~     match $e {
+87 +             Ok(v) => v,
+88 +             Err(e) => panic!("{} returned {}", stringify!($e), e),
+89 +         }.for_each(|file| {
+90 +         let file = t!(file);
+91 +         let h1 = file.header();
+92 +         let h1b = h1.as_bytes();
+93 +         let h2 = h1.clone();
+94 +         let h2b = h2.as_bytes();
+95 +         assert!(h1b[..] == h2b[..] && h2b[..] != hnb[..])
+96 +     });
+   |
+
+warning: use a for_each to enable iterator refinement
+   --> tests/all.rs:101:5
+    |
+101 | /     for file in t!(ar.entries()) {
+102 | |         let file = t!(file);
+103 | |         let h1 = file.header();
+104 | |         let h1b = h1.as_bytes();
+...   |
+107 | |         assert!(h1b[..] == h2b[..] && h2b[..] != hnb[..])
+108 | |     }
+    | |_____^
+    |
+help: try using `for_each` on the iterator
+    |
+101 ~     match $e {
+102 +             Ok(v) => v,
+103 +             Err(e) => panic!("{} returned {}", stringify!($e), e),
+104 +         }.for_each(|file| {
+105 +         let file = t!(file);
+106 +         let h1 = file.header();
+107 +         let h1b = h1.as_bytes();
+108 +         let h2 = h1.clone();
+109 +         let h2b = h2.as_bytes();
+110 +         assert!(h1b[..] == h2b[..] && h2b[..] != hnb[..])
+111 +     });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> tests/all.rs:573:17
+    |
+573 | /                 for (a, b) in h.name.iter_mut().zip(path.as_bytes()) {
+574 | |                     *a = *b;
+575 | |                 }
+    | |_________________^
+    |
+help: try using `for_each` on the iterator
+    |
+573 ~                 h.name.iter_mut().zip(path.as_bytes()).for_each(|(a, b)| {
+574 +                     *a = *b;
+575 +                 });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> tests/all.rs:756:5
+    |
+756 | /     for (a, b) in header.as_old_mut().name.iter_mut().zip(b"foo\\bar\x00") {
+757 | |         *a = *b;
+758 | |     }
+    | |_____^
+    |
+help: try using `for_each` on the iterator
+    |
+756 ~     header.as_old_mut().name.iter_mut().zip(b"foo\\bar\x00").for_each(|(a, b)| {
+757 +         *a = *b;
+758 +     });
+    |
+
+warning: use a for_each to enable iterator refinement
+   --> tests/all.rs:968:5
+    |
+968 | /     for t in [tar::EntryType::Symlink, tar::EntryType::Link] {
+969 | |         let mut b = Builder::new(Vec::<u8>::new());
+970 | |         let mut h = Header::new_gnu();
+971 | |         h.set_entry_type(t);
+...   |
+983 | |         assert_eq!(e.link_name().unwrap().unwrap().to_str().unwrap(), target);
+984 | |     }
+    | |_____^
+    |
+help: try using `for_each` on the iterator
+    |
+968 ~     [tar::EntryType::Symlink, tar::EntryType::Link].for_each(|t| {
+969 +         let mut b = Builder::new(Vec::<u8>::new());
+970 +         let mut h = Header::new_gnu();
+971 +         h.set_entry_type(t);
+972 +         h.set_size(0);
+973 +         let path = "usr/lib/.build-id/05/159ed904e45ff5100f7acd3d3b99fa7e27e34f";
+974 +         let target = "../../../../usr/lib64/qt5/plugins/wayland-graphics-integration-server/libqt-wayland-compositor-xcomposite-egl.so";
+975 +         t!(b.append_link(&mut h, path, target));
+976 + 
+977 +         let contents = t!(b.into_inner());
+978 +         let mut a = Archive::new(&contents[..]);
+979 + 
+980 +         let e = &t!(t!(a.entries()).next().unwrap());
+981 +         assert_eq!(e.header().entry_type(), t);
+982 +         assert_eq!(e.path().unwrap().to_str().unwrap(), path);
+983 +         assert_eq!(e.link_name().unwrap().unwrap().to_str().unwrap(), target);
+984 +     });
+    |
+
+warning: use a for_each to enable iterator refinement
+    --> tests/all.rs:989:5
+     |
+989  | /     for t in [tar::EntryType::Symlink, tar::EntryType::Link] {
+990  | |         let mut b = Builder::new(Vec::<u8>::new());
+991  | |         let mut h = Header::new_gnu();
+992  | |         h.set_entry_type(t);
+...    |
+1005 | |         assert_eq!(e.link_name().unwrap().unwrap().to_str().unwrap(), target);
+1006 | |     }
+     | |_____^
+     |
+help: try using `for_each` on the iterator
+     |
+989  ~     [tar::EntryType::Symlink, tar::EntryType::Link].for_each(|t| {
+990  +         let mut b = Builder::new(Vec::<u8>::new());
+991  +         let mut h = Header::new_gnu();
+992  +         h.set_entry_type(t);
+993  +         h.set_size(0);
+994  +         let path = "usr/lib/systemd/systemd-sysv-install";
+995  +         let target = "../../..//sbin/chkconfig";
+996  +         h.set_link_name_literal(target).unwrap();
+997  +         t!(b.append_data(&mut h, path, std::io::empty()));
+998  + 
+999  +         let contents = t!(b.into_inner());
+1000 +         let mut a = Archive::new(&contents[..]);
+1001 + 
+1002 +         let e = &t!(t!(a.entries()).next().unwrap());
+1003 +         assert_eq!(e.header().entry_type(), t);
+1004 +         assert_eq!(e.path().unwrap().to_str().unwrap(), path);
+1005 +         assert_eq!(e.link_name().unwrap().unwrap().to_str().unwrap(), target);
+1006 +     });
+     |
+
+warning: use a for_each to enable iterator refinement
+    --> tests/all.rs:1331:5
+     |
+1331 | /     for _ in 0..512 {
+1332 | |         name.push('a');
+1333 | |         name.push('𑢮');
+1334 | |         x.append_data(&mut Header::new_gnu(), &name, data).unwrap();
+1335 | |         name.pop();
+1336 | |     }
+     | |_____^
+     |
+help: try using `for_each` on the iterator
+     |
+1331 ~     0..512.for_each(|_| {
+1332 +         name.push('a');
+1333 ~         name.push('𑢮');
+1334 +         x.append_data(&mut Header::new_gnu(), &name, data).unwrap();
+1335 +         name.pop();
+1336 +     });
+     |
+
+warning: use a for_each to enable iterator refinement
+    --> tests/all.rs:1497:5
+     |
+1497 | /     for file in &tarlist {
+1498 | |         let td = t!(TempBuilder::new().prefix("tar-rs").tempdir());
+1499 | |         let rdr = Cursor::new(file);
+1500 | |         let mut ar = Archive::new(rdr);
+...    |
+1515 | |         }
+1516 | |     }
+     | |_____^
+     |
+help: try using `for_each` on the iterator
+     |
+1497 ~     &tarlist.for_each(|file| {
+1498 +         let td = t!(TempBuilder::new().prefix("tar-rs").tempdir());
+1499 +         let rdr = Cursor::new(file);
+1500 +         let mut ar = Archive::new(rdr);
+1501 +         ar.set_preserve_ownerships(true);
+1502 + 
+1503 +         if unsafe { libc::getuid() } == 0 {
+1504 +             t!(ar.unpack(td.path()));
+1505 +             let meta = fs::metadata(td.path().join("test.txt")).unwrap();
+1506 +             let uid = std::os::unix::prelude::MetadataExt::uid(&meta);
+1507 +             let gid = std::os::unix::prelude::MetadataExt::gid(&meta);
+1508 +             // 4294967294 = u32::MAX - 1
+1509 +             assert_eq!(uid, 4294967294);
+1510 +             assert_eq!(gid, 4294967294);
+1511 +         } else {
+1512 +             // it's not possible to unpack tar while preserving ownership
+1513 +             // without root permissions
+1514 +             assert!(ar.unpack(td.path()).is_err());
+1515 +         }
+1516 +     });
+     |
+
+warning: `tar` (test "all") generated 10 warnings (run `cargo fix --test "all"` to apply 10 suggestions)
+    Finished dev [unoptimized + debuginfo] target(s) in 3.03s
